@@ -12,13 +12,13 @@
             <ColumnDefinition Width="29*"/>
             <ColumnDefinition Width="131*"/>
         </Grid.ColumnDefinitions>
-        <ListBox Grid.Column="2" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="500,66,41,65"/>
+        <ListBox Grid.Column="2" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="319,66,41,132"/>
         <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="69,90,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="168"/>
-        <TextBlock x:Name="sadasd" Grid.Column="2" HorizontalAlignment="Left" Margin="34,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30"><Run Text="Titel"/><Run Language="da-dk" Text=":"/></TextBlock>
+        <TextBlock x:Name="sadasd1" Grid.Column="2" HorizontalAlignment="Left" Margin="34,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30"><Run Text="Titel"/><Run Language="da-dk" Text=":"/></TextBlock>
         <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="69,133,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="168"/>
-        <TextBlock x:Name="sadasd_Copy" Grid.Column="2" HorizontalAlignment="Left" Margin="10,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="54" Text="Varighed:"/>
-        <TextBlock x:Name="sadasd_Copy1" Grid.Column="2" HorizontalAlignment="Left" Margin="19,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" Text="Genre:"/>
-        <RadioButton Grid.Column="2" Content="Action&#xD;&#xA;" HorizontalAlignment="Left" Margin="69,183,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
+        <TextBlock x:Name="sadasd_Copy2" Grid.Column="2" HorizontalAlignment="Left" Margin="10,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="54" Text="Varighed:"/>
+        <TextBlock x:Name="sadasd_Copy3" Grid.Column="2" HorizontalAlignment="Left" Margin="19,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" Text="Genre:"/>
+        <RadioButton Grid.Column="2" Content="Action&#xA;" HorizontalAlignment="Left" Margin="69,183,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
         <RadioButton Grid.Column="2" Content="Adventure" HorizontalAlignment="Left" Margin="69,205,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.563,2.273" Checked="RadioButton_Checked"/>
         <RadioButton Grid.Column="2" Content="Comedy" HorizontalAlignment="Left" Margin="69,225,0,0" VerticalAlignment="Top"/>
         <RadioButton Grid.Column="2" Content="Science fiction" HorizontalAlignment="Left" Margin="170,245,0,0" VerticalAlignment="Top"/>
@@ -32,6 +32,8 @@
         <RadioButton Grid.Column="2" Content="Horror" HorizontalAlignment="Left" Margin="170,307,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.861,0.598"/>
         <RadioButton Grid.Column="2" Content="Western" HorizontalAlignment="Left" Margin="170,287,0,0" VerticalAlignment="Top"/>
         <RadioButton Grid.Column="2" Content="Thriller" HorizontalAlignment="Left" Margin="170,265,0,0" VerticalAlignment="Top"/>
+        <Button Grid.Column="2" Content="Tilføj" HorizontalAlignment="Left" Margin="94,330,0,0" VerticalAlignment="Top" Height="34" Width="117" Click="Button_Click"/>
+        <Button Grid.Column="2" Content="Slet " HorizontalAlignment="Left" Margin="408,330,0,0" VerticalAlignment="Top" Height="33" Width="117"/>
 
     </Grid>
 </Window>

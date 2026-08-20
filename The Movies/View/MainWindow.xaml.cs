@@ -43,5 +43,10 @@ namespace The_Movies
         {
 
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
