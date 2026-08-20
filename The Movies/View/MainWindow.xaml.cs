@@ -8,6 +8,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using The_Movies.Model.Repository;
+using The_Movies.Model;
+using The_Movies.ViewModel;
+using System.Collections.ObjectModel;
 
 namespace The_Movies
 {
@@ -20,33 +27,10 @@ namespace The_Movies
         {
             InitializeComponent();
 
-
-
-        }
-
-        private void RadioButton_Checked(object sender, RoutedEventArgs e)
-        {
+            DataContext = new MainViewModel();
 
         }
 
-        private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void RadioButton_Checked_2(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void RadioButton_Checked_3(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+     
     }
-}
+}   
