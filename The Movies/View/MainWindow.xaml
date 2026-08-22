@@ -23,7 +23,8 @@
           Margin="69,180,0,0"
           Width="168"
           VerticalAlignment="Top"
-          SelectedValue="{Binding Genre, UpdateSourceTrigger=PropertyChanged}">
+          SelectedValue="{Binding Genre, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Content">
+           
 
             <ComboBoxItem Content="Action"/>
             <ComboBoxItem Content="Adventure"/>

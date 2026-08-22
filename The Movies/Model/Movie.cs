@@ -18,5 +18,10 @@ namespace The_Movies.Model
             Genre = genre;
         }
 
+        public override string ToString()
+        {
+            return $"{Title} ({Length} Timer) - {Genre}";
+        }
+
     }
 }
