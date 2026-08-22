@@ -7,6 +7,7 @@ using The_Movies.ViewModel;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using The_Movies.Repository;
+using The_Movies.Services;
 
 namespace The_Movies.ViewModel
 {
@@ -17,6 +18,8 @@ namespace The_Movies.ViewModel
         // Det betyder, at ViewModel'en ikke behøver vide, hvordan data bliver gemt.
 
         private readonly IMovieRepository _repo;
+
+        private readonly IMessageService _msg;
 
 
         // ObservableCollection indeholder de film, som View/ListBox skal vise.
@@ -121,6 +124,22 @@ namespace The_Movies.ViewModel
 
         private void AddMovie()
         {
+            if(Title==null)
+            {
+                _msg.ShowMessage("");
+                return;
+            }
+            else if(Length == 0)
+            {
+                _msg.ShowMessage("");
+            }
+            else if (Genre == null)
+            {
+                _msg.ShowMessage("");
+            }
+
+
+
             Movie movie = new Movie(Title, Length, Genre);
            
             // den her gemmer filmen i vores repositry. Interfacet gør at vi kan bagefter gemme filen på flere måder. ligenu gør vi det kun i en liste
