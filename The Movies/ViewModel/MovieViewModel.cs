@@ -132,6 +132,7 @@ namespace The_Movies.ViewModel
 
         private void RemoveMovie()
         {
+            //hvis filmen ikke findes. stopper den ellers fjerner den
             if(SelectedMovie == null)
             {
                 return;
