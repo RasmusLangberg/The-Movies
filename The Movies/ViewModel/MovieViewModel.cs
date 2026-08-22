@@ -124,21 +124,12 @@ namespace The_Movies.ViewModel
 
         private void AddMovie()
         {
-            if(Title==null)
+            if(Title==null || Length == 0 || Genre == null)
             {
-                _msg.ShowMessage("");
+                _msg.ShowMessage("Alle felter skal udfyldes");
                 return;
             }
-            else if(Length == 0)
-            {
-                _msg.ShowMessage("");
-            }
-            else if (Genre == null)
-            {
-                _msg.ShowMessage("");
-            }
-
-
+        
 
             Movie movie = new Movie(Title, Length, Genre);
            
