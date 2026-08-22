@@ -12,10 +12,10 @@
             <ColumnDefinition Width="29*"/>
             <ColumnDefinition Width="131*"/>
         </Grid.ColumnDefinitions>
-        <ListBox Grid.Column="2" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="319,66,41,24"/>
-        <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="69,90,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="168"/>
+        <ListBox Grid.Column="2" ItemsSource="{Binding Movies}" Margin="319,66,41,24"/>
+        <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="69,90,0,0" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top" Width="168"/>
         <TextBlock x:Name="sadasd1" Grid.Column="2" HorizontalAlignment="Left" Margin="34,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30"><Run Text="Titel"/><Run Language="da-dk" Text=":"/></TextBlock>
-        <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="69,133,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="168"/>
+        <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="69,133,0,0" TextWrapping="Wrap" Text="{Binding Length}" VerticalAlignment="Top" Width="168"/>
         <TextBlock x:Name="sadasd_Copy2" Grid.Column="2" HorizontalAlignment="Left" Margin="10,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="54" Text="Varighed:"/>
         <TextBlock x:Name="sadasd_Copy3" Grid.Column="2" HorizontalAlignment="Left" Margin="19,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" Text="Genre:"/>
         <ComboBox Grid.Column="2"
