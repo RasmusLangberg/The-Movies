@@ -20,38 +20,35 @@ namespace The_Movies.ViewModel
         public ObservableCollection<Movie> Movies { get; set; }
 
 
-        private string _Title;
-
-        
-
+        private string _title;
         public string Title
         {
-            get => _Title;
+            get => _title;
             set
             {
-                _Title = value;
+                _title = value;
                 OnPropertyChanged(nameof(Title));
             }
         }
 
-        private int _Length;
+        private int _length;
         public int Length
         {
-            get => _Length;
+            get => _length;
             set
             {
-                _Length = value;
+                _length = value;
                 OnPropertyChanged(nameof(Length));
             }
         }
 
-        private string _Genre;
+        private string _genre;
         public string Genre
         {
-            get => _Genre;
+            get => _genre;
             set
             {
-                _Genre = value;
+                _genre = value;
                 OnPropertyChanged(nameof(Genre));
             }
         }
