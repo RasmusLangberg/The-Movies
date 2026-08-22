@@ -18,7 +18,7 @@ namespace The_Movies.ViewModel
 
         public ObservableCollection<Movie> Movies { get; set; }
 
-        public ICommand addMovieCommand { get; }
+        public ICommand AddMovieCommand { get; }
 
         public ICommand RemoveMovieCommand { get; }
 
@@ -58,6 +58,19 @@ namespace The_Movies.ViewModel
             }
         }
 
+        private Movie _selectedMovie;
+
+        public Movie SelectedMovie
+        {
+            get { return _selectedMovie; }
+            set 
+            {
+                _selectedMovie = value;
+                OnPropertyChanged(nameof(SelectedMovie));
+            }
+        }
+            
+
 
         public MovieViewModel(IMovieRepository repo)
         {
@@ -66,7 +79,9 @@ namespace The_Movies.ViewModel
             Movies = new ObservableCollection<Movie>(_repo.GetAllMovies());
 
 
-            addMovieCommand = new RelayCommand(parameter => AddMovie());
+            AddMovieCommand = new RelayCommand(parameter => AddMovie());
+
+            RemoveMovieCommand = new RelayCommand(parameter => RemoveMovie());
 
 
         }
@@ -76,17 +91,30 @@ namespace The_Movies.ViewModel
         {
             Movie movie = new Movie(Title, Length, Genre);
            
-
             // den her gemmer filmen i vores repositry. Interfacet gør at vi kan bagefter gemme filen på flere måder. ligenu gør vi det kun i en liste
             _repo.AddMovie(movie);
 
             // denne her hander om viewmodels egen "liste" som så kan vises i View
             Movies.Add(movie);
-
-
-
         }
 
+        private void RemoveMovie()
+        {
+            if(SelectedMovie == null)
+            {
+                return;
+            }
+            else
+            {
+                // fjerner fra vores repos
+                _repo.RemoveMovie(SelectedMovie);
+
+                // fjerner fra viewmodels "liste"
+                Movies.Remove(SelectedMovie);
+
+            }
+
+        }
 
 
 

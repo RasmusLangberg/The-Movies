@@ -12,7 +12,7 @@
             <ColumnDefinition Width="29*"/>
             <ColumnDefinition Width="131*"/>
         </Grid.ColumnDefinitions>
-        <ListBox Grid.Column="2" ItemsSource="{Binding Movies}" Margin="319,66,41,24"/>
+        <ListBox Grid.Column="2" ItemsSource="{Binding Movies}" SelectedItem="{Binding SelectedMovie}" Margin="319,66,41,24"/>
         <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="69,90,0,0" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top" Width="168"/>
         <TextBlock x:Name="sadasd1" Grid.Column="2" HorizontalAlignment="Left" Margin="34,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30"><Run Text="Titel"/><Run Language="da-dk" Text=":"/></TextBlock>
         <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="69,133,0,0" TextWrapping="Wrap" Text="{Binding Length}" VerticalAlignment="Top" Width="168"/>
