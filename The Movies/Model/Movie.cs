@@ -20,7 +20,7 @@ namespace The_Movies.Model
 
         public override string ToString()
         {
-            return $"{Title} ({Length} Timer) - {Genre}";
+            return $"{Title} - {Genre} - {Length} minutter";
         }
 
     }
