@@ -11,10 +11,11 @@ using System.Collections.ObjectModel;
 
 namespace The_Movies.ViewModel
 {
-    public class MainViewModel : INotifyPropertyChanged
+    public class MovieViewModel : INotifyPropertyChanged
     {
-        private readonly MovieRepository _repository;
+        private readonly IMovieRepository _repo;
 
+        private List<Movie> _movies;
 
     }
 }

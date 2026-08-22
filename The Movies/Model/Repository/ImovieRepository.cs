@@ -6,7 +6,8 @@ namespace The_Movies.Model.Repository
 {
     public interface IMovieRepository
     {
-                void AddMovie(Movie movie);
+       
+        void AddMovie(Movie movie);
 
 
     }
