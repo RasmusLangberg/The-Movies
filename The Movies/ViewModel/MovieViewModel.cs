@@ -145,6 +145,7 @@ namespace The_Movies.ViewModel
             //hvis filmen ikke findes. stopper den ellers fjerner den
             if(SelectedMovie == null)
             {
+                _msg.ShowMessage("Du skal vælgte en film fra listen inden du trykker slet");
                 return;
             }
             else
