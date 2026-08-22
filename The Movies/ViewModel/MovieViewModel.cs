@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
-using The_Movies.Model.Repository;
 using The_Movies.Model;
 using The_Movies.ViewModel;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
-
+using The_Movies.Repository;
 
 namespace The_Movies.ViewModel
 {
@@ -18,6 +17,12 @@ namespace The_Movies.ViewModel
         private readonly IMovieRepository _repo;
 
         public ObservableCollection<Movie> Movies { get; set; }
+
+        public ICommand addMovieCommand { get; }
+
+        public ICommand RemoveMovieCommand { get; }
+
+
 
 
         private string _title;
@@ -59,6 +64,13 @@ namespace The_Movies.ViewModel
             _repo = repo;
 
             Movies = new ObservableCollection<Movie>(_repo.GetAllMovies());
+
+
+            addMovieCommand = new RelayCommand(parameter => The_Mo());
+
+
+
+
 
 
         }

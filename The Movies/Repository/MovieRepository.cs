@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
+using The_Movies.Model;
 
-namespace The_Movies.Model.Repository
+namespace The_Movies.Repository
 {
    public class MovieRepository : IMovieRepository
     {

@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using The_Movies.Model;
 
-namespace The_Movies.Model.Repository
+namespace The_Movies.Repository
 {
     public interface IMovieRepository
     {
