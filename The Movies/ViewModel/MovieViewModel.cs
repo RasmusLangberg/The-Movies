@@ -66,17 +66,26 @@ namespace The_Movies.ViewModel
             Movies = new ObservableCollection<Movie>(_repo.GetAllMovies());
 
 
-            addMovieCommand = new RelayCommand(parameter => The_Mo());
-
-
-
-
+            addMovieCommand = new RelayCommand(parameter => AddMovie());
 
 
         }
 
 
+        private void AddMovie()
+        {
+            Movie movie = new Movie(Title, Length, Genre);
+           
 
+            // den her gemmer filmen i vores repositry. Interfacet gør at vi kan bagefter gemme filen på flere måder. ligenu gør vi det kun i en liste
+            _repo.AddMovie(movie);
+
+            // denne her hander om viewmodels egen "liste" som så kan vises i View
+            Movies.Add(movie);
+
+
+
+        }
 
 
 

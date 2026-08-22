@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
-using The_Movies.Model.Repository;
+using The_Movies.Repository;
 using The_Movies.Model;
 using The_Movies.ViewModel;
 using System.Windows.Input;
