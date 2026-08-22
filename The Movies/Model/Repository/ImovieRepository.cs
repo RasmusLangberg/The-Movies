@@ -8,7 +8,10 @@ namespace The_Movies.Model.Repository
     {
        
         void AddMovie(Movie movie);
-
+        IEnumerable<Movie> GetAllMovies();
+        Movie GetMovieByTitle(string title);
+        void UpdateMovie(Movie movie);
+        void RemoveMovie(Movie movie);
 
     }
 }

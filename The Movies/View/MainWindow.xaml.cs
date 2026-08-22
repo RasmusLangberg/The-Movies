@@ -27,7 +27,8 @@ namespace The_Movies
         {
             InitializeComponent();
 
-            DataContext = new MovieViewModel();
+            var repo = new MovieRepository();
+            DataContext = new MovieViewModel(repo);
 
         }
 

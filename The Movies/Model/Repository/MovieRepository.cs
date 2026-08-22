@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace The_Movies.Model.Repository
 {
-   public class MovieRepository
+   public class MovieRepository : IMovieRepository
     {
         private List<Movie> _movies;
 
@@ -44,7 +44,7 @@ namespace The_Movies.Model.Repository
         }
 
         // Retrieves all movies in the repository
-        public List<Movie> GetAllMovies()
+        public IEnumerable<Movie> GetAllMovies()
         {
             return _movies;
         }
