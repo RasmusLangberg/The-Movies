@@ -147,20 +147,19 @@ namespace The_Movies.ViewModel
 
         private void RemoveMovie()
         {
-            //hvis filmen ikke findes. stopper den ellers fjerner den
-            if (SelectedMovie == null)
-            {
-                _msg.ShowMessage("Du skal vælgte en film fra listen inden du trykker slet");
-                return;
-            }
+            //hvis filmen ikke findes stopper den, ellers fjerner den
             if (_repo.GetAllMovies().Count()==0)
             {
                 _msg.ShowMessage("Ingen film er tilføjet til listen");
                 return;
             }
-            
-                // fjerner fra vores repos
-                _repo.RemoveMovie(SelectedMovie);
+            if (SelectedMovie == null)
+            {
+                _msg.ShowMessage("Du skal vælgte en film fra listen inden du trykker slet");
+                return;
+            }
+            // fjerner fra vores repos
+            _repo.RemoveMovie(SelectedMovie);
 
                 // fjerner fra viewmodels "liste"
                 Movies.Remove(SelectedMovie);
