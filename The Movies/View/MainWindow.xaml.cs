@@ -34,7 +34,6 @@ namespace The_Movies
 
         }
 
-        
-        
+       
     }
 }   

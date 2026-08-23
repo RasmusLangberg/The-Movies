@@ -58,8 +58,9 @@ namespace The_Movies.ViewModel
             }
         }
 
-        private int _length;
-        public int Length
+        // ?= må være null...bruges for at gøre det muligt at have null værdier i Length, da int ikke kan være null som standard. ellers står der 0 i texboxen når man åbner programmet, hvilket ikke er optimalt.
+        private int? _length;
+        public int? Length
         {
             get => _length;
             set
