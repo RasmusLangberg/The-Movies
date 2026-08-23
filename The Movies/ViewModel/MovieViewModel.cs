@@ -129,14 +129,14 @@ namespace The_Movies.ViewModel
 
         private void AddMovie()
         {
-            if(Title==null || Length == 0 || Genre == null)
+            if(Title==null || Length == null || Genre == null)
             {
                 _msg.ShowMessage("Alle felter skal udfyldes");
                 return;
             }
         
 
-            Movie movie = new Movie(Title, Length, Genre);
+            Movie movie = new Movie(Title, Length.Value, Genre);
            
             // den her gemmer filmen i vores repositry. Interfacet gør at vi kan bagefter gemme filen på flere måder. ligenu gør vi det kun i en liste
             _repo.AddMovie(movie);
@@ -148,20 +148,24 @@ namespace The_Movies.ViewModel
         private void RemoveMovie()
         {
             //hvis filmen ikke findes. stopper den ellers fjerner den
-            if(SelectedMovie == null)
+            if (SelectedMovie == null)
             {
                 _msg.ShowMessage("Du skal vælgte en film fra listen inden du trykker slet");
                 return;
             }
-            else
+            if (_repo.GetAllMovies().Count()==0)
             {
+                _msg.ShowMessage("Ingen film er tilføjet til listen");
+                return;
+            }
+            
                 // fjerner fra vores repos
                 _repo.RemoveMovie(SelectedMovie);
 
                 // fjerner fra viewmodels "liste"
                 Movies.Remove(SelectedMovie);
 
-            }
+            
 
         }
 

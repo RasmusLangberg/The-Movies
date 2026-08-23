@@ -15,7 +15,7 @@
         <ListBox Grid.Column="2" ItemsSource="{Binding Movies}" SelectedItem="{Binding SelectedMovie}" Margin="319,66,41,24"/>
         <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="134,88,0,0" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top" Width="168"/>
         <TextBlock x:Name="sadasd1" Grid.Column="2" HorizontalAlignment="Left" Margin="89,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" Height="16"><Run Text="Titel"/><Run Language="da-dk" Text=":"/></TextBlock>
-        <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="134,135,0,0" TextWrapping="Wrap" Text="{Binding Length}" VerticalAlignment="Top" Width="168" TextChanged="TextBox_TextChanged"/>
+        <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="134,135,0,0" TextWrapping="Wrap" Text="{Binding Length}" VerticalAlignment="Top" Width="168"/>
         <TextBlock x:Name="sadasd_Copy2" Grid.Column="2" HorizontalAlignment="Left" Margin="10,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113" Height="20"><Run Text="Varighed"/><Run Text=" "/><Run Language="da-dk" Text="i munitter"/><Run Text=":"/></TextBlock>
         <TextBlock x:Name="sadasd_Copy3" Grid.Column="2" HorizontalAlignment="Left" Margin="83,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" Text="Genre:" Height="16"/>
         <ComboBox Grid.Column="2"
