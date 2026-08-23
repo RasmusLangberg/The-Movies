@@ -15,6 +15,7 @@ using The_Movies.Repository;
 using The_Movies.Model;
 using The_Movies.ViewModel;
 using System.Collections.ObjectModel;
+using The_Movies.Services;
 
 namespace The_Movies
 {
@@ -28,7 +29,8 @@ namespace The_Movies
             InitializeComponent();
 
             var repo = new MovieRepository();
-            DataContext = new MovieViewModel(repo);
+            var _msg = new MessageService();
+            DataContext = new MovieViewModel(repo, _msg);
 
         }
 

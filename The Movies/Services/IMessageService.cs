@@ -5,12 +5,18 @@ using System.Windows;
 
 namespace The_Movies.Services
 {
-    internal interface IMessageService
+    public interface IMessageService
     {
 
 
-        public void ShowMessage(string message)
-        { 
-        }
+        void ShowMessage(string message);
+
+
+
+
+
+
     }
 }
+
+

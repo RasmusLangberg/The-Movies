@@ -8,6 +8,9 @@ using System.Windows.Input;
 using System.Collections.ObjectModel;
 using The_Movies.Repository;
 using The_Movies.Services;
+using System.Windows;
+using System.Windows.Controls;
+
 
 namespace The_Movies.ViewModel
 {
@@ -98,11 +101,12 @@ namespace The_Movies.ViewModel
 
         // Constructoren bliver kørt, når MovieViewModel bliver oprettet.
         // Repository bliver sendt ind udefra og gemt i _repo.
-        public MovieViewModel(IMovieRepository repo)
+        public MovieViewModel(IMovieRepository repo, IMessageService msg)
         {
 
             // Gemmer det Repository, som ViewModel'en skal bruge.
             _repo = repo;
+            _msg = msg;
 
 
             // Henter alle eksisterende film fra Repository.
