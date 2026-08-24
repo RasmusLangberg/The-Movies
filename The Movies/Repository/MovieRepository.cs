@@ -3,21 +3,27 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 using The_Movies.Model;
+using System.IO;
+using System.Text.Json;
+using System.Linq;
 
 namespace The_Movies.Repository
 {
    public class MovieRepository : IMovieRepository
     {
         private List<Movie> _movies;
+        private const string FilePath = "movies.json";
 
         public MovieRepository()
         {
             _movies = new List<Movie>();
+            LoadMovies();
         }
         // Create: Adds a new movie to the repository
         public void AddMovie(Movie movie)
         {
             _movies.Add(movie);
+            SaveMovies();
         }
 
         // Read: Retrieves a movie by its title
@@ -35,6 +41,7 @@ namespace The_Movies.Repository
                 existingMovie.Title = movie.Title;
                 existingMovie.Length = movie.Length;
                 existingMovie.Genre = movie.Genre;
+                SaveMovies();
             }
         }
 
@@ -42,12 +49,50 @@ namespace The_Movies.Repository
         public void RemoveMovie(Movie movie)
         {
             _movies.Remove(movie);
+            SaveMovies();
         }
 
         // Retrieves all movies in the repository
         public IEnumerable<Movie> GetAllMovies()
         {
             return _movies;
+        }
+
+        // Save movies to JSON file
+        private void SaveMovies()
+        {
+            try
+            {
+                var options = new JsonSerializerOptions { WriteIndented = true };
+                var json = JsonSerializer.Serialize(_movies, options);
+                File.WriteAllText(FilePath, json);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error {ex.Message}");
+            }
+        }
+
+        // Load movies from JSON file
+        private void LoadMovies()
+        {
+            try
+            {
+                if (File.Exists(FilePath))
+                {
+                    var json = File.ReadAllText(FilePath);
+                    var loadedMovies = JsonSerializer.Deserialize<List<Movie>>(json);
+                    if (loadedMovies != null)
+                    {
+                        _movies = loadedMovies;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error {ex.Message}");
+                _movies = new List<Movie>();
+            }
         }
     }
 }
