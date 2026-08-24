@@ -22,6 +22,10 @@ namespace The_Movies.Repository
         // Create: Adds a new movie to the repository
         public void AddMovie(Movie movie)
         {
+            if (GetMovieByTitle(movie.Title) != null)
+            {
+                throw new InvalidOperationException($"A movie with the title '{movie.Title}' already exists.");
+            }
             _movies.Add(movie);
             SaveMovies();
         }
