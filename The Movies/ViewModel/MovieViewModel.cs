@@ -134,15 +134,26 @@ namespace The_Movies.ViewModel
                 _msg.ShowMessage("Alle felter skal udfyldes");
                 return;
             }
-        
+
 
             Movie movie = new Movie(Title, Length.Value, Genre);
-           
-            // den her gemmer filmen i vores repositry. Interfacet gør at vi kan bagefter gemme filen på flere måder. ligenu gør vi det kun i en liste
-            _repo.AddMovie(movie);
 
-            // denne her hander om viewmodels egen "liste" som så kan vises i View
-            Movies.Add(movie);
+            try
+            {
+                // den her gemmer filmen i vores repositry. Interfacet gør at vi kan bagefter gemme filen på flere måder. ligenu gør vi det kun i en liste
+                _repo.AddMovie(movie);
+
+                // denne her hander om viewmodels egen "liste" som så kan vises i View
+                Movies.Add(movie);
+            }
+            catch (InvalidOperationException ex)
+            {
+                _msg.ShowMessage(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _msg.ShowMessage($"Error {ex.Message}");
+            }
         }
 
         private void RemoveMovie()
