@@ -11,12 +11,11 @@ namespace The_Movies.Repository
 {
    public class MovieRepository : IMovieRepository
     {
-        private List<Movie> _movies;
+        private List<Movie> _movies = new List<Movie>();
         private const string FilePath = "movies.json";
 
         public MovieRepository()
         {
-            _movies = new List<Movie>();
             LoadMovies();
         }
         // Create: Adds a new movie to the repository

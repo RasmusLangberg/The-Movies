@@ -8,7 +8,7 @@ namespace The_Movies.Repository
     class CinemaRepository : ICinemaRepository
 
     {
-        private List<Cinema> _cinmeas;
+        private List<Cinema> _cinemas = new List<Cinema>();
 
         public void AddCinema(Cinema cinema)
         {
@@ -17,7 +17,7 @@ namespace The_Movies.Repository
 
         public IEnumerable<Cinema> GetAllCinemas()
         {
-            return _cinmeas;
+            return _cinemas;
         }
 
         public Cinema GetCinemaByName(string name)
