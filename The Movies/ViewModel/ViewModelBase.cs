@@ -14,7 +14,7 @@ namespace The_Movies.ViewModel
 
         // Denne metode sender besked til WPF om,
         // at en bestemt property har ændret sig. uden PropertyChangedEventArgs ville WPF ikke opdatere det bruger ser på skærmen selvom værdien ædrede sig
-        protected void OnPropertyChanged(string propertyName)
+        public void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(
                 this,
