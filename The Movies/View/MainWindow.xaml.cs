@@ -30,7 +30,8 @@ namespace The_Movies
 
             var repo = new MovieRepository();
             var _msg = new MessageService();
-            DataContext = new MovieViewModel(repo, _msg);
+            DataContext = new MainViewModel();
+
 
         }
 

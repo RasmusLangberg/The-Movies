@@ -57,8 +57,8 @@
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="40,64,0,0" TextWrapping="Wrap" Text="Navn" VerticalAlignment="Top" RenderTransformOrigin="1.068,0.88"/>
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="16,108,0,0" TextWrapping="Wrap" Text="Antal sale" VerticalAlignment="Top" RenderTransformOrigin="1.068,0.88"/>
         <ListBox Grid.Column="2" ItemsSource="{Binding Movies}" SelectedItem="{Binding SelectedMovie}" Margin="328,231,527,101"/>
-        <ListBox Grid.Column="2" ItemsSource="{Binding Movies}" SelectedItem="{Binding SelectedMovie}" Margin="34,231,821,101"/>
-        <ListBox Grid.Column="2" ItemsSource="{Binding Movies}" SelectedItem="{Binding SelectedMovie}" Margin="626,231,231,101"/>
+        <ListBox Grid.Column="2" ItemsSource="{Binding Cinema}" SelectedItem="{Binding SelectedCinema}" Margin="34,231,821,101"/>
+        <ListBox Grid.Column="2" ItemsSource="{Binding Movies}" SelectedItem="{Binding SelectedForestilling}" Margin="626,231,231,101"/>
         <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="72,64,0,0" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top" Width="168"/>
         <Button Grid.Column="2" Content="Tilføj Film" HorizontalAlignment="Left" Margin="98,143,0,0" VerticalAlignment="Top" Height="19" Width="116" Command="{Binding AddMovieCommand}"/>
         <Button Grid.Column="2" Content="Slet Film" HorizontalAlignment="Left" Margin="98,167,0,0" VerticalAlignment="Top" Height="20" Width="116"  Command="{Binding RemoveMovieCommand}"/>

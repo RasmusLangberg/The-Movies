@@ -88,7 +88,7 @@ namespace The_Movies.ViewModel
 
         private void RemoveCinema()
         {
-            //_repo.RemoveCinema();
+            _repo.RemoveCinema(selectedCinema);
 
 
 
