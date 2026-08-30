@@ -80,6 +80,44 @@ namespace The_Movies.ViewModel
                 OnPropertyChanged(nameof(Genre));
             }
         }
+
+        private string _director;
+        public string Director
+        {
+            get => _director;
+            set
+            {
+                _director = value;
+                OnPropertyChanged(nameof(Director));
+            }
+        }
+
+        private DateOnly _ReleaseDate;
+        public DateOnly ReleaseDate
+        {
+            get => _ReleaseDate;
+            set
+            {
+                _ReleaseDate = value;
+                OnPropertyChanged(nameof(ReleaseDate));
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         // Privat felt som holder den Movie, brugeren har valgt i ListBox.
         private Movie _selectedMovie;
 
@@ -136,7 +174,7 @@ namespace The_Movies.ViewModel
             }
 
 
-            Movie movie = new Movie(Title, Length.Value, Genre);
+            Movie movie = new Movie(Title, Length.Value, Genre, d);
 
             try
             {
