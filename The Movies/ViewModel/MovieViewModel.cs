@@ -14,7 +14,7 @@ using System.Windows.Controls;
 
 namespace The_Movies.ViewModel
 {
-    public class MovieViewModel : INotifyPropertyChanged
+    public class MovieViewModel : ViewModelBase
     {
         // vi bruger IMovieRepository interface til at definere en kontrakt for MovieRepository-klassen, som gør det muligt at ændre implementeringen af MovieRepository uden at ændre MovieViewModel-klassen.
         // ViewModel'en bruger interfacet som en kontrakt til Repository.
@@ -182,18 +182,6 @@ namespace The_Movies.ViewModel
 
 
 
-        // Event som bruges af INotifyPropertyChanged.
-        // WPF kan dermed få besked, når en property ændrer sig.
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        // Denne metode sender besked til WPF om,
-        // at en bestemt property har ændret sig. uden PropertyChangedEventArgs ville WPF ikke opdatere det bruger ser på skærmen selvom værdien ædrede sig
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(
-                this,
-                new PropertyChangedEventArgs(propertyName)
-            );
-        }
+       
     } 
 }
