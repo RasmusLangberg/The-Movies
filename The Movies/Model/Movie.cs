@@ -11,7 +11,6 @@ namespace The_Movies.Model
         public int Length { get; set; }
         public string Genre { get; set; }
         public string Director { get; set; }
-
         public DateOnly ReleaseDate { get; set; }
 
 

@@ -57,8 +57,8 @@
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="40,64,0,0" TextWrapping="Wrap" Text="Navn" VerticalAlignment="Top" RenderTransformOrigin="1.068,0.88"/>
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="16,108,0,0" TextWrapping="Wrap" Text="Antal sale" VerticalAlignment="Top" RenderTransformOrigin="1.068,0.88"/>
         <ListBox Grid.Column="2" ItemsSource="{Binding Movie.Movies}" SelectedItem="{Binding Movie.SelectedMovie}" Margin="328,340,527,20"/>
-        <ListBox Grid.Column="2" ItemsSource="{Binding Cinema.Cinemas}" SelectedItem="{Binding Cinema.SelectedCinema}" Margin="34,231,821,101"/>
-        <ListBox Grid.Column="2" ItemsSource="" SelectedItem="" Margin="626,231,231,101"/>
+        <ListBox Grid.Column="2" ItemsSource="{Binding Cinema.Cinemas}" SelectedItem="{Binding Cinema.selectedCinema}" Margin="34,231,821,101"/>
+        <ListBox Grid.Column="2" ItemsSource="{Binding }" SelectedItem="" Margin="626,231,231,101"/>
         <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="72,64,0,0" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top" Width="168"/>
         <Button Grid.Column="2" Content="Tilføj biograf" HorizontalAlignment="Left" Margin="98,143,0,0" VerticalAlignment="Top" Height="19" Width="116" Command="{Binding Cinema.AddCinemaCommand}"/>
         <Button Grid.Column="2" Content="Slet biograf" HorizontalAlignment="Left" Margin="98,167,0,0" VerticalAlignment="Top" Height="20" Width="116"  Command="{Binding Cinema.RemoveCinemaCommand}"/>
