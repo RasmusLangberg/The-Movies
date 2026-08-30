@@ -7,8 +7,8 @@ namespace The_Movies.Model
     public class Forestilling
     {
 
+        public 
 
-
-
+    
     }
 }
