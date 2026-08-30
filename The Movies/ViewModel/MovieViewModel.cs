@@ -174,7 +174,7 @@ namespace The_Movies.ViewModel
             }
 
 
-            Movie movie = new Movie(Title, Length.Value, Genre, d);
+            Movie movie = new Movie(Title, Length.Value, Genre, Director, ReleaseDate);
 
             try
             {
