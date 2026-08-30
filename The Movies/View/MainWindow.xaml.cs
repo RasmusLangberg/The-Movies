@@ -29,9 +29,9 @@ namespace The_Movies
             InitializeComponent();
 
             var repo = new MovieRepository();
-            var _msg = new MessageService();
+            var msg = new MessageService();
             var repo2 = new CinemaRepository();
-            DataContext = new MainViewModel(new MovieViewModel(repo), new CinemaViewModel(repo2), _msg);
+            DataContext = new MainViewModel(new MovieViewModel(repo), new CinemaViewModel(repo2), msg);
 
 
         }

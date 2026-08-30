@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:The_Movies"
+        xmlns:local="clr-namespace:The_Movies" xmlns:viewmodel="clr-namespace:The_Movies.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="1200
         ">
@@ -44,10 +44,10 @@
         </ComboBox>
 
 
-        <Button Grid.Column="2" Content="Tilføj Film" HorizontalAlignment="Left" Margin="392,251,0,0" VerticalAlignment="Top" Height="19" Width="116" Command="{Binding AddMovieCommand}"/>
+        <Button Grid.Column="2" Content="Tilføj Film" HorizontalAlignment="Left" Margin="392,251,0,0" VerticalAlignment="Top" Height="19" Width="116" Command="{Binding Movie.AddMovieCommand}"/>
 
 
-        <Button Grid.Column="2" Content="Slet Film" HorizontalAlignment="Left" Margin="392,0,0,0" VerticalAlignment="Center" Height="20" Width="116"  Command="{Binding RemoveMovieCommand}"/>
+        <Button Grid.Column="2" Content="Slet Film" HorizontalAlignment="Left" Margin="392,0,0,0" VerticalAlignment="Center" Height="20" Width="116"  Command="{Binding Movie.RemoveMovieCommand}"/>
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="400,31,0,0" TextWrapping="Wrap" Text="Opret Film" FontWeight="Bold" FontSize="20" VerticalAlignment="Top"/>
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="668,31,0,0" TextWrapping="Wrap" Text="Opret forestilling" FontSize="20" FontWeight="Bold" VerticalAlignment="Top"/>
         <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="664,63,0,0" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top" Width="168"/>
@@ -56,14 +56,14 @@
         <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="72,107,0,0" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top" Width="168"/>
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="40,64,0,0" TextWrapping="Wrap" Text="Navn" VerticalAlignment="Top" RenderTransformOrigin="1.068,0.88"/>
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="16,108,0,0" TextWrapping="Wrap" Text="Antal sale" VerticalAlignment="Top" RenderTransformOrigin="1.068,0.88"/>
-        <ListBox Grid.Column="2" ItemsSource="{Binding Movies}" SelectedItem="{Binding SelectedMovie}" Margin="328,465,527,20"/>
-        <ListBox Grid.Column="2" ItemsSource="{Binding Cinemas}" SelectedItem="{Binding SelectedCinema}" Margin="34,231,821,101"/>
-        <ListBox Grid.Column="2" ItemsSource="{Binding Movies}" SelectedItem="{Binding SelectedForestilling}" Margin="626,231,231,101"/>
+        <ListBox Grid.Column="2" ItemsSource="{Binding Movie.Movies}" SelectedItem="{Binding Movie.SelectedMovie}" Margin="328,340,527,20"/>
+        <ListBox Grid.Column="2" ItemsSource="{Binding Cinema.Cinemas}" SelectedItem="{Binding Cinema.SelectedCinema}" Margin="34,231,821,101"/>
+        <ListBox Grid.Column="2" ItemsSource="" SelectedItem="" Margin="626,231,231,101"/>
         <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="72,64,0,0" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top" Width="168"/>
-        <Button Grid.Column="2" Content="Tilføj biograf" HorizontalAlignment="Left" Margin="98,143,0,0" VerticalAlignment="Top" Height="19" Width="116" Command="{Binding AddCinemaCommand}"/>
-        <Button Grid.Column="2" Content="Slet biograf" HorizontalAlignment="Left" Margin="98,167,0,0" VerticalAlignment="Top" Height="20" Width="116"  Command="{Binding RemoveCinemaCommand}"/>
-        <Button Grid.Column="2" Content="Tilføj Film" HorizontalAlignment="Left" Margin="690,143,0,0" VerticalAlignment="Top" Height="19" Width="116" Command="{Binding AddMovieCommand}"/>
-        <Button Grid.Column="2" Content="Slet Film" HorizontalAlignment="Left" Margin="690,167,0,0" VerticalAlignment="Top" Height="20" Width="116"  Command="{Binding RemoveMovieCommand}" RenderTransformOrigin="0.5,0.5">
+        <Button Grid.Column="2" Content="Tilføj biograf" HorizontalAlignment="Left" Margin="98,143,0,0" VerticalAlignment="Top" Height="19" Width="116" Command="{Binding Cinema.AddCinemaCommand}"/>
+        <Button Grid.Column="2" Content="Slet biograf" HorizontalAlignment="Left" Margin="98,167,0,0" VerticalAlignment="Top" Height="20" Width="116"  Command="{Binding Cinema.RemoveCinemaCommand}"/>
+        <Button Grid.Column="2" Content="Tilføj Film" HorizontalAlignment="Left" Margin="690,143,0,0" VerticalAlignment="Top" Height="19" Width="116" Command="{Binding Movie.AddMovieCommand}"/>
+        <Button Grid.Column="2" Content="Slet Film" HorizontalAlignment="Left" Margin="690,167,0,0" VerticalAlignment="Top" Height="20" Width="116"  Command="{Binding Movie.RemoveMovieCommand}" RenderTransformOrigin="0.5,0.5">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
