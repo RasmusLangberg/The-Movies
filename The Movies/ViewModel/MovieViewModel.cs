@@ -102,12 +102,12 @@ namespace The_Movies.ViewModel
 
         // Constructoren bliver kørt, når MovieViewModel bliver oprettet.
         // Repository bliver sendt ind udefra og gemt i _repo.
-        public MovieViewModel(IMovieRepository repo, IMessageService msg)
+        public MovieViewModel(IMovieRepository repo)
         {
 
             // Gemmer det Repository, som ViewModel'en skal bruge.
             _repo = repo;
-            _msg = msg;
+            
 
 
             // Henter alle eksisterende film fra Repository.
