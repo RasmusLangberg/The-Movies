@@ -11,8 +11,12 @@ namespace The_Movies.Repository
 
     {
         private List<Cinema> _cinemas = new List<Cinema>();
-        private const string FilePath = "Sal.json";
+        private const string FilePath = "Cinema.json";
 
+        public CinemaRepository()
+        {
+            LoadCinema();
+        }
         public void AddCinema(Cinema cinema)
         {
             _cinemas.Add(cinema);
@@ -41,11 +45,11 @@ namespace The_Movies.Repository
             {
                 excist.Name = cinema.Name;
                 excist.Sale = cinema.Sale;
-                SaveSal();
+                SaveCinema();
             }
         }
 
-        private void SaveSal()
+        private void SaveCinema()
         {
             try
             {
@@ -59,7 +63,26 @@ namespace The_Movies.Repository
             }
         }
 
-
+        private void LoadCinema()
+        {
+            try
+            {
+                if (File.Exists(FilePath))
+                {
+                    var json = File.ReadAllText(FilePath);
+                    var loadedCinema = JsonSerializer.Deserialize<List<Cinema>>(json);
+                    if (loadedCinema != null)
+                    {
+                        _cinemas = loadedCinema;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error {ex.Message}");
+                _cinemas = new List<Cinema>();
+            }
+        }
 
     }
 }
