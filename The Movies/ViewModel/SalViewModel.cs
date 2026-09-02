@@ -75,7 +75,7 @@ namespace The_Movies.ViewModel
         public SalViewModel(ISalRepository repo)
         {
             _repo = repo;
-
+            Sale = new ObservableCollection<Sal>(_repo.GetAllSale());
             AddCommandSal = new RelayCommand(parameter => AddSal());
             RemoveCommandSal = new RelayCommand(parameter => RemoveSal());
 
@@ -85,9 +85,9 @@ namespace The_Movies.ViewModel
         public void AddSal()
         {
 
-            Sal sal = new Sal(Name, AntalSæder, Cinema);
+            Sal sal = new Sal(Name, Cinema);
             _repo.AddSal(sal);
-
+            Sale.Add(sal);
 
         }
 
@@ -95,7 +95,7 @@ namespace The_Movies.ViewModel
         {
 
             _repo.RemoveSal(SelectedSal);
-
+            Sale.Remove(SelectedSal);
         }
     }
 }

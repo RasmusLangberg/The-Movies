@@ -9,14 +9,12 @@ namespace The_Movies.Model
     {
         public string Name { get; set; }
 
-        public int AntalSæder { get; set; }
-
+       
         public Cinema BiografDenTilhøre { get; set; }
 
-        public Sal(string name, int antalSæder, Cinema biografDenTilhøre)
+        public Sal(string name, Cinema biografDenTilhøre)
         {
-            Name = name;
-            AntalSæder = antalSæder;
+            Name = name; 
             BiografDenTilhøre = biografDenTilhøre;
         }
 

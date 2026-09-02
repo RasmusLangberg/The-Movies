@@ -99,7 +99,7 @@
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="20,362,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="1.068,0.88"><Run Text="Sal navn"/><Run Language="da-dk" Text=":"/></TextBlock>
         <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="72,360,0,0" TextWrapping="Wrap" Text="{Binding Sal.Name}" VerticalAlignment="Top" Width="168"/>
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="48,340,0,0" TextWrapping="Wrap" FontSize="8                    " FontWeight="Medium" VerticalAlignment="Top"><Run Text="Klik på en biograf fra listen oven"/><Run Text="for"/><Run Text=" "/><Run Language="da-dk" Text=" "/><Run Text="inden to oprttet en sal "/></TextBlock>
-        <Button Grid.Column="2" Content="Tilføj Sal" HorizontalAlignment="Left" Margin="98,396,0,0" VerticalAlignment="Top" Height="18" Width="116" Command="{Binding Cinema.AddCinemaCommand}"/>
+        <Button Grid.Column="2" Content="Tilføj Sal" HorizontalAlignment="Left" Margin="98,396,0,0" VerticalAlignment="Top" Height="18" Width="116" Command="{Binding Sal.AddSalCommand}"/>
 
     </Grid>
 </Window>

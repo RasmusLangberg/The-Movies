@@ -43,7 +43,7 @@ namespace The_Movies.Repository
             if (exsistingSal != null)
             {
                 exsistingSal.Name = sal.Name;
-                exsistingSal.AntalSæder = sal.AntalSæder;
+                
                 exsistingSal.BiografDenTilhøre = sal.BiografDenTilhøre;
                 SaveSal();
             };
