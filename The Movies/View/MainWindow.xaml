@@ -64,7 +64,7 @@
         <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="72,64,0,0" TextWrapping="Wrap" Text="{Binding Cinema.Name}" VerticalAlignment="Top" Width="168"/>
         <Button Grid.Column="2" Content="Tilføj biograf" HorizontalAlignment="Left" Margin="98,94,0,0" VerticalAlignment="Top" Height="19" Width="116" Command="{Binding Cinema.AddCinemaCommand}"/>
         <Button Grid.Column="2" Content="Slet biograf" HorizontalAlignment="Left" Margin="98,118,0,0" VerticalAlignment="Top" Height="20" Width="116"  Command="{Binding Cinema.RemoveCinemaCommand}"/>
-        <ListBox Grid.Column="2" ItemsSource="{Binding Cinema.Cinemas}" SelectedItem="{Binding Cinema.selectedCinema}" Margin="94,146,882,275"/>
+        <ListBox Grid.Column="2" ItemsSource="{Binding Cinema.Cinemas}" SelectedItem="{Binding Cinema.selectedCinema}" Margin="54,144,860,275"/>
 
         
         

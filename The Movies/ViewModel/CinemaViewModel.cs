@@ -27,7 +27,7 @@ namespace The_Movies.ViewModel
             _repo = cinemas;
 
 
-            new ObservableCollection<Cinema>(_repo.GetAllCinemas());
+            Cinemas = new ObservableCollection<Cinema>(_repo.GetAllCinemas());
 
 
 
@@ -79,17 +79,18 @@ namespace The_Movies.ViewModel
 
         private void AddCinema()
         {
-
-
-
             Cinema cinema = new Cinema(Name);
             _repo.AddCinema(cinema);
+
+            Cinemas.Add(cinema);
 
         }
 
         private void RemoveCinema()
         {
             _repo.RemoveCinema(selectedCinema);
+
+            Cinemas.Remove(selectedCinema);
 
 
 

@@ -16,6 +16,9 @@ namespace The_Movies.Model
         
         }
 
-
+        public override string ToString()
+        {
+            return $"{Name}";
+        }
     }
 }
