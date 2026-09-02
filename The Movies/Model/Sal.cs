@@ -13,5 +13,12 @@ namespace The_Movies.Model
 
         public Cinema BiografDenTilhøre { get; set; }
 
+        public Sal(string name, int antalSæder, Cinema biografDenTilhøre)
+        {
+            Name = name;
+            AntalSæder = antalSæder;
+            BiografDenTilhøre = biografDenTilhøre;
+        }
+
     }
 }

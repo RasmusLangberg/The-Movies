@@ -9,7 +9,7 @@ using The_Movies.Services;
 
 namespace The_Movies.ViewModel
 {
-    public class SalViewModel
+    public class SalViewModel : ViewModelBase
     {
 
         private readonly ISalRepository _repo;
@@ -19,6 +19,56 @@ namespace The_Movies.ViewModel
         public ICommand AddCommandSal;
 
         public ICommand RemoveCommandSal;
+
+        //opret properties til view
+
+        private string _name;
+
+        public string Name
+        {
+            get { return _name; }
+            set 
+            { 
+                _name = value;
+                OnPropertyChanged(nameof(Name));
+            }
+           
+        }
+
+        private int _antalSæder;
+
+        public int AntalSæder
+        {
+            get { return _antalSæder; }
+            set 
+            { 
+                _antalSæder = value;
+                OnPropertyChanged(nameof(AntalSæder));
+            }
+        }
+
+        private Sal _selectedSal;
+
+        public  Sal SelectedSal
+        {
+            get { return _selectedSal; }
+            set 
+            { 
+                _selectedSal = value;
+                OnPropertyChanged(nameof(SelectedSal));
+            }
+        }
+
+
+
+        private Cinema _cinema;
+
+        public Cinema Cinema
+        {
+            get { return _cinema; }
+            set { _cinema = value; OnPropertyChanged(nameof(Cinema)); }
+        }
+
 
 
 
@@ -35,7 +85,7 @@ namespace The_Movies.ViewModel
         public void AddSal()
         {
 
-            Sal sal = new Sal();
+            Sal sal = new Sal(Name, AntalSæder, Cinema);
             _repo.AddSal(sal);
 
 
@@ -44,6 +94,7 @@ namespace The_Movies.ViewModel
         public void RemoveSal()
         {
 
+            _repo.RemoveSal(SelectedSal);
 
         }
     }
