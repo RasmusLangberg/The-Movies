@@ -13,7 +13,7 @@ namespace The_Movies.Model
         public string Director { get; set; }
 
         
-        public DateTime ReleaseDate { get; set; } = DateTime.Now;
+        public DateOnly ReleaseDate { get; set; } = DateOnly.FromDateTime(DateTime.Now);
 
 
 
@@ -23,7 +23,7 @@ namespace The_Movies.Model
             Length = length;
             Genre = genre;
             Director = director;
-            ReleaseDate = releaseDate;
+            ReleaseDate = DateOnly.FromDateTime(releaseDate);
         }
 
         public override string ToString()

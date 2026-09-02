@@ -92,8 +92,8 @@ namespace The_Movies.ViewModel
             }
         }
 
-        private DateTime _ReleaseDate;
-        public DateTime ReleaseDate
+        private DateOnly _ReleaseDate = DateOnly.FromDateTime(DateTime.Now);
+        public DateOnly ReleaseDate
         {
             get => _ReleaseDate;
             set
@@ -153,7 +153,7 @@ namespace The_Movies.ViewModel
             }
 
 
-            Movie movie = new Movie(Title, Length.Value, Genre, Director, ReleaseDate);
+            Movie movie = new Movie(Title, Length.Value, Genre, Director, ReleaseDate.ToDateTime(new TimeOnly(0, 0)));
 
             try
             {

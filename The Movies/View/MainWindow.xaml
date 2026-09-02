@@ -25,7 +25,7 @@
 
 
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="286,177,0,0" TextWrapping="Wrap" Text="Premiere dato:" VerticalAlignment="Top"/>
-        <DatePicker DisplayDate="2026/01/01" DisplayDateStart="1900/01/01" Grid.Column="2" HorizontalAlignment="Left" Margin="392,173,0,0" VerticalAlignment="Top" SelectedDate="{Binding Movie.ReleaseDate}"/>
+        <DatePicker Grid.Column="2" HorizontalAlignment="Left" Margin="392,173,0,0" VerticalAlignment="Top" SelectedDate="{Binding Movie.ReleaseDate}"/>
 
         <TextBlock x:Name="sadasd_Copy3" Grid.Column="2" HorizontalAlignment="Left" Margin="328,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" Text="Genre:" Height="16"/>
         <ComboBox Grid.Column="2"
