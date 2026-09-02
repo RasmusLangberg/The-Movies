@@ -92,8 +92,8 @@ namespace The_Movies.ViewModel
             }
         }
 
-        private DateOnly _ReleaseDate;
-        public DateOnly ReleaseDate
+        private DateTime _ReleaseDate;
+        public DateTime ReleaseDate
         {
             get => _ReleaseDate;
             set
@@ -103,30 +103,9 @@ namespace The_Movies.ViewModel
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // Privat felt som holder den Movie, brugeren har valgt i ListBox.
+       
         private Movie _selectedMovie;
 
-
-        // SelectedItem fra ListBox'en bindes til denne property.
-        // Den gør det muligt for ViewModel'en at vide,
-        // hvilken film brugeren har valgt.
-
-        // SelectedItem er en indbygget funktion i Listbox der gør man kan klikke på de oprettet film på listen 
         public Movie SelectedMovie
         {
             get { return _selectedMovie; }
@@ -140,13 +119,13 @@ namespace The_Movies.ViewModel
 
         // Constructoren bliver kørt, når MovieViewModel bliver oprettet.
         // Repository bliver sendt ind udefra og gemt i _repo.
-        public MovieViewModel(IMovieRepository repo)
+        public MovieViewModel(IMovieRepository repo, IMessageService msg)
         {
 
             // Gemmer det Repository, som ViewModel'en skal bruge.
             _repo = repo;
-            
 
+            _msg = msg;
 
             // Henter alle eksisterende film fra Repository.
             // Filmene lægges ind i ViewModel'ens ObservableCollection.
@@ -167,7 +146,7 @@ namespace The_Movies.ViewModel
 
         private void AddMovie()
         {
-            if(Title==null || Length == null || Genre == null)
+            if(Title==null || Length == null || Genre == null || Director == null )
             {
                 _msg.ShowMessage("Alle felter skal udfyldes");
                 return;

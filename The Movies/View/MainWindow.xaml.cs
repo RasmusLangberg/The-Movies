@@ -31,7 +31,9 @@ namespace The_Movies
             var repo = new MovieRepository();
             var msg = new MessageService();
             var repo2 = new CinemaRepository();
-            DataContext = new MainViewModel(new MovieViewModel(repo), new CinemaViewModel(repo2), msg);
+            var sal = new SalRepository();
+            var fore = new ForestillingRepositroy();
+            DataContext = new MainViewModel(new MovieViewModel(repo, msg), new CinemaViewModel(repo2), new SalViewModel(sal), new ForestillingViewModel(fore), msg);
 
 
         }

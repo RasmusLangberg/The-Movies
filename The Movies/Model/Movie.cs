@@ -11,11 +11,13 @@ namespace The_Movies.Model
         public int Length { get; set; }
         public string Genre { get; set; }
         public string Director { get; set; }
-        public DateOnly ReleaseDate { get; set; }
+
+        
+        public DateTime ReleaseDate { get; set; } = DateTime.Now;
 
 
 
-        public Movie(string title, int length, string genre, string director, DateOnly releaseDate)
+        public Movie(string title, int length, string genre, string director, DateTime releaseDate)
         {
             Title = title;
             Length = length;
@@ -26,7 +28,7 @@ namespace The_Movies.Model
 
         public override string ToString()
         {
-            return $"{Title} - {Genre} - {Length} minutter";
+            return $"{Title} - {Genre} - {Length} minutter - {Director} - {ReleaseDate}";
         }
 
     }
