@@ -14,7 +14,12 @@ namespace The_Movies.Repository
     public class SalRepository : ISalRepository
     {
         private List<Sal> _sale = new List<Sal>();
-        private const string FilePath = "movies.json";
+        private const string FilePath = "Sal.json";
+
+        public SalRepository()
+        {
+            LoadSal();
+        }
 
         public void AddSal(Sal sal)
         {
@@ -64,6 +69,25 @@ namespace The_Movies.Repository
             }
         }
 
-
+        private void LoadSal()
+        {
+            try
+            {
+                if (File.Exists(FilePath))
+                {
+                    var json = File.ReadAllText(FilePath);
+                    var loadedsale = JsonSerializer.Deserialize<List<Sal>>(json);
+                    if (loadedsale != null)
+                    {
+                        _sale = loadedsale;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error {ex.Message}");
+                _sale = new List<Sal>();
+            }
+        }
     }
 }

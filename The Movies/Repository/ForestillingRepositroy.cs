@@ -7,7 +7,7 @@ namespace The_Movies.Repository
 {
     public class ForestillingRepositroy : IForestillingRepository
     {
-        private const string FilePath = "Forestilling.json"
+        private const string FilePath = "Forestilling.json";
 
         public void AddForestilling(Forestilling forestilling)
         {
