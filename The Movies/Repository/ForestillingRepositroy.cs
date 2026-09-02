@@ -1,22 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Text.Json;
 using The_Movies.Model;
 
 namespace The_Movies.Repository
 {
     public class ForestillingRepositroy : IForestillingRepository
     {
+        private List<Forestilling> _fore = new List<Forestilling>();
         private const string FilePath = "Forestilling.json";
+
+        public ForestillingRepositroy()
+        {
+            LoadFore();
+        }
 
         public void AddForestilling(Forestilling forestilling)
         {
-            throw new NotImplementedException();
+            _fore.Add(forestilling);
+            SaveFore();
         }
 
         public IEnumerable<Forestilling> GetAllForestillinger()
         {
-            throw new NotImplementedException();
+            return _fore;
         }
 
         public Forestilling GetForestillingByName(string name)
@@ -26,12 +35,52 @@ namespace The_Movies.Repository
 
         public void RemoveForestilling(Forestilling forestilling)
         {
-            throw new NotImplementedException();
+            _fore.Remove(forestilling);
         }
 
         public void UpdateForestilling(Forestilling forestilling)
         {
             throw new NotImplementedException();
         }
+
+
+        private void SaveFore()
+        {
+            try
+            {
+                var options = new JsonSerializerOptions { WriteIndented = true };
+                var json = JsonSerializer.Serialize(_fore, options);
+                File.WriteAllText(FilePath, json);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error {ex.Message}");
+            }
+        }
+
+        // Load movies from JSON file
+        private void LoadFore()
+        {
+            try
+            {
+                if (File.Exists(FilePath))
+                {
+                    var json = File.ReadAllText(FilePath);
+                    var loadedFore = JsonSerializer.Deserialize<List<Forestilling>>(json);
+                    if (loadedFore != null)
+                    {
+                        _fore = loadedFore;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error {ex.Message}");
+                _fore = new List<Forestilling>();
+            }
+        }
+
+
+
     }
 }
