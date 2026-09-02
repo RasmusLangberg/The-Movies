@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Text.Json;
 using The_Movies.Model;
 
 namespace The_Movies.Repository
@@ -9,10 +11,11 @@ namespace The_Movies.Repository
 
     {
         private List<Cinema> _cinemas = new List<Cinema>();
+        private const string FilePath = "Sal.json";
 
         public void AddCinema(Cinema cinema)
         {
-            throw new NotImplementedException();
+            _cinemas.Add(cinema);
         }
 
         public IEnumerable<Cinema> GetAllCinemas()
@@ -22,18 +25,42 @@ namespace The_Movies.Repository
 
         public Cinema GetCinemaByName(string name)
         {
-            throw new NotImplementedException();
+            return _cinemas.Find(x => name.Equals(name));
         }
 
         public void RemoveCinema(Cinema cinema)
         {
-            throw new NotImplementedException();
+            _cinemas.Remove(cinema);
         }
 
         public void UpdateCinema(Cinema cinema)
         {
-            throw new NotImplementedException();
+            var excist = GetCinemaByName(cinema.Name);
+
+            if(excist != null)
+            {
+                excist.Name = cinema.Name;
+                excist.Sale = cinema.Sale;
+                SaveSal();
+            }
         }
+
+        private void SaveSal()
+        {
+            try
+            {
+                var options = new JsonSerializerOptions { WriteIndented = true };
+                var json = JsonSerializer.Serialize(_cinemas, options);
+                File.WriteAllText(FilePath, json);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error {ex.Message}");
+            }
+        }
+
+
+
     }
 }
 
