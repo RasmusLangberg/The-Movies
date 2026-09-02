@@ -82,7 +82,7 @@ namespace The_Movies.ViewModel
 
 
 
-            Cinema cinema = new Cinema(Name, Screens);
+            Cinema cinema = new Cinema(Name);
             _repo.AddCinema(cinema);
 
         }

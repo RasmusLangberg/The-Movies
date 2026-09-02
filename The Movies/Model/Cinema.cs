@@ -8,13 +8,12 @@ namespace The_Movies.Model
     {
 		public string Name { get; set; }
 
-        public int Screens { get; set; }
+        public List<Sal> Sale { get; set; } = new List<Sal>();
 
-
-        public Cinema(string name, int screens)
+        public Cinema(string name)
         {
             Name = name;
-            Screens = screens;
+        
         }
 
 
