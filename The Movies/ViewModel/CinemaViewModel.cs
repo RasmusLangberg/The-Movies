@@ -15,8 +15,6 @@ namespace The_Movies.ViewModel
 
         private readonly ICinemaRepository _repo;
 
-        public ObservableCollection<Cinema> Cinemas { get; set; }
-
         public ICommand AddCinemaCommand { get;}
 
         public ICommand RemoveCinemaCommand { get; }
@@ -50,17 +48,19 @@ namespace The_Movies.ViewModel
             
         }
 
-        private int _screens;
+        private ObservableCollection<Cinema> _cinemas;
 
-        public int Screens
+        public ObservableCollection<Cinema> Cinemas
         {
-            get { return _screens; }
-            set 
-            { 
-                _screens = value;
-                OnPropertyChanged(nameof(Screens));
+            get => _cinemas;
+            set
+            {
+                _cinemas = value;
+                OnPropertyChanged(nameof(Cinemas));
             }
         }
+
+
 
         private Cinema _selectedCinema;
 

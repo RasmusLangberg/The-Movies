@@ -14,11 +14,15 @@ namespace The_Movies.ViewModel
 
         private readonly ISalRepository _repo;
 
+        private readonly ICinemaRepository _repoCinema;
+
         private readonly CinemaViewModel _cinemaViewModel;
 
         public ObservableCollection<Sal> Sale { get; set; }
 
         public ICommand AddCommandSal;
+
+        public ICommand UpdateCommandSal;
 
         public ICommand RemoveCommandSal;
 
@@ -67,19 +71,36 @@ namespace The_Movies.ViewModel
             _repo = repo;
             _cinemaViewModel = cinemaViewModel;
             Sale = new ObservableCollection<Sal>(_repo.GetAllSale());
+            UpdateCommandSal = new RelayCommand(paramter => UpdateSal());
             AddCommandSal = new RelayCommand(parameter => AddSal());
             RemoveCommandSal = new RelayCommand(parameter => RemoveSal());
         }
 
+        public void UpdateSal()
+        {
+
+
+            var exsistingMovie = _repoCinema.GetCinemaByName(_cinemaViewModel.SelectedCinema.Name);
+
+            if(exsistingMovie != null)
+            {
+                exsistingMovie.Name = _cinemaViewModel.Name;
+                exsistingMovie.
+
+            }
+
+
+            Cinema cinima = new Cinema(_cinemaViewModel.Name,);
+
+        }
 
         public void AddSal()
         {
             if (_cinemaViewModel.SelectedCinema == null) return;
 
-            Sal sal = new Sal(Name, _cinemaViewModel.SelectedCinema);
-            _repo.AddSal(sal);
-            Sale.Add(sal);
-            _cinemaViewModel.SelectedCinema.Sale.Add(sal);
+
+
+
 
         }
 
