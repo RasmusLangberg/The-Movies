@@ -189,11 +189,9 @@ namespace The_Movies.ViewModel
             // fjerner fra vores repos
             _repo.RemoveMovie(SelectedMovie);
 
-                // fjerner fra viewmodels "liste"
-                Movies.Remove(SelectedMovie);
-
-            
-
+               
+            // fjerner fra viewmodels "liste"  
+            Movies.Remove(SelectedMovie);
         }
 
 

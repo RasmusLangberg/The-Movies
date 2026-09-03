@@ -21,9 +21,7 @@ namespace The_Movies.ViewModel
         {
             _repo = cinemas;
 
-            Cinemas = new ObservableCollection<Cinema>(
-                _repo.GetAllCinemas()
-            );
+            Cinemas = new ObservableCollection<Cinema>(_repo.GetAllCinemas());
 
             AddCinemaCommand = new RelayCommand(parameter => AddCinema());
             RemoveCinemaCommand = new RelayCommand(parameter => RemoveCinema());

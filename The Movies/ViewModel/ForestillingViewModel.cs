@@ -62,9 +62,7 @@ namespace The_Movies.ViewModel
             _salViewModel = salViewModel;
             _movieViewModel = movieViewModel;
 
-            Forestillinger = new ObservableCollection<Forestilling>(
-                _repo.GetAllForestillinger()
-            );
+            Forestillinger = new ObservableCollection<Forestilling>( _repo.GetAllForestillinger());
 
             AddForestillingCommand = new RelayCommand(parameter => AddForestilling());
             RemoveForestillingCommand = new RelayCommand(parameter => RemoveForestilling());
@@ -74,27 +72,12 @@ namespace The_Movies.ViewModel
 
         private void AddForestilling()
         {
-            if (_cinemaViewModel.SelectedCinema == null)
+            if (_cinemaViewModel.SelectedCinema == null || _cinemaViewModel.SelectedCinema.Sale == null || _salViewModel.SelectedSal == null || _movieViewModel.SelectedMovie == null || string.IsNullOrEmpty(StartTid))
+            {
                 return;
-
-            if (_cinemaViewModel.SelectedCinema.Sale == null)
-                return;
-
-            if (_salViewModel.SelectedSal == null)
-                return;
-
-            if (_movieViewModel.SelectedMovie == null)
-                return;
-
-            if (string.IsNullOrEmpty(StartTid))
-                return;
-
-            Forestilling forestilling = new Forestilling(
-                _movieViewModel.SelectedMovie,
-                _cinemaViewModel.SelectedCinema,
-                _salViewModel.SelectedSal,
-                StartTid
-            );
+            }
+               
+            Forestilling forestilling = new Forestilling(_movieViewModel.SelectedMovie, _cinemaViewModel.SelectedCinema, _salViewModel.SelectedSal, StartTid );
 
             _repo.AddForestilling(forestilling);
 
@@ -103,9 +86,13 @@ namespace The_Movies.ViewModel
 
         public void RemoveForestilling()
         {
-            if (SelectedForestilling == null) return;
+            if (SelectedForestilling == null)
+            { 
+                return; 
+            }
 
             _repo.RemoveForestilling(SelectedForestilling);
+
             Forestillinger.Remove(SelectedForestilling);
         }
     }

@@ -9,7 +9,6 @@ namespace The_Movies.ViewModel
     {
         
         public MovieViewModel Movie { get; }
-
         public CinemaViewModel Cinema { get; }
         public SalViewModel Sal { get; }
         public ForestillingViewModel Forestilling { get; }
