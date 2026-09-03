@@ -27,13 +27,6 @@ namespace The_Movies.ViewModel
         public ICommand AddForestillingCommand { get; }
         public ICommand RemoveForestillingCommand { get; }
 
-       
-
-
-
-
-
-
 
         private Forestilling _selectedForestilling;
         public Forestilling SelectedForestilling
