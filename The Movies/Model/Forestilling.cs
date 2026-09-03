@@ -9,6 +9,7 @@ namespace The_Movies.Model
         public Movie Movie { get; set; }
         public Cinema Cinema { get; set; }
         public Sal Sal { get; set; }
+        public DateOnly Dato { get; set; } = DateOnly.FromDateTime(DateTime.Now);
         public string StartTid { get; set; }
 
         public string SlutTid => BeregnSlutTid(StartTid, Movie.Length);
@@ -22,17 +23,18 @@ namespace The_Movies.Model
             return slut.ToString(@"hh\:mm");
         }
 
-        public Forestilling(Movie movie, Cinema cinema, Sal sal, string startTid)
+        public Forestilling(Movie movie, Cinema cinema, Sal sal, DateOnly dato, string startTid)
         {
             Movie = movie;
             Cinema = cinema;
             Sal = sal;
+            Dato = dato;
             StartTid = startTid;
         }
 
         public override string ToString()
         {
-            return $"{Movie.Title} - {Cinema.Name} - {Sal.Name} - {StartTid} til {SlutTid}";
+            return $"{Movie.Title} - {Cinema.Name} - {Sal.Name} - {Dato} - {StartTid} til {SlutTid}";
         }
     }
 }
