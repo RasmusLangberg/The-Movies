@@ -34,7 +34,7 @@ namespace The_Movies
             var sal = new SalRepository();
             var fore = new ForestillingRepositroy();
             var cinemaViewModel = new CinemaViewModel(repo2);
-            var salViewModel = new SalViewModel(sal, cinemaViewModel);
+            var salViewModel = new SalViewModel(sal,repo2, cinemaViewModel);
             DataContext = new MainViewModel(new MovieViewModel(repo, msg), cinemaViewModel, salViewModel, new ForestillingViewModel(fore, new MovieViewModel(repo, msg), salViewModel), msg);
 
 

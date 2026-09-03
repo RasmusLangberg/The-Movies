@@ -6,19 +6,27 @@ namespace The_Movies.Model
 {
     public class Cinema
     {
-		public string Name { get; set; }
-
+        public string Name { get; set; }
         public List<Sal> Sale { get; set; } = new List<Sal>();
 
         public Cinema(string name)
         {
             Name = name;
-        
+        }
+
+        public Cinema(string name, List<Sal> sale) : this(name)
+        {
+            Sale = sale;
         }
 
         public override string ToString()
         {
-            return $"{Name}";
+            if (Sale != null && Sale.Count > 0)
+            {
+                string salNavne = string.Join(", ", Sale.Select(s => s.Name));
+                return $"{Name} (Sale: {salNavne})";
+            }
+            return Name;
         }
     }
 }

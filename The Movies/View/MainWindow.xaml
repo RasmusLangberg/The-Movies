@@ -3,10 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:The_Movies" xmlns:viewmodel="clr-namespace:The_Movies.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
+        xmlns:local="clr-namespace:The_Movies" 
+        xmlns:viewmodel="clr-namespace:The_Movies.ViewModel" 
+        d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1200
-        ">
+        Title="MainWindow" Height="600" Width="1200">
+
     <Grid RenderTransformOrigin="0.472,0.478" Margin="0,0,0,14">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0*"/>
@@ -14,29 +16,27 @@
             <ColumnDefinition Width="733*"/>
         </Grid.ColumnDefinitions>
 
-
+        <!-- ================= OPRET FILM ================= -->
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="400,31,0,0" TextWrapping="Wrap" Text="Opret Film" FontWeight="Bold" FontSize="20" VerticalAlignment="Top"/>
 
-        <TextBlock x:Name="sadasd1" Grid.Column="2" HorizontalAlignment="Left" Margin="334,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" Height="16"><Run Text="Titel"/><Run Language="da-dk" Text=":"/></TextBlock>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="334,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" Height="16">
+            <Run Text="Titel"/><Run Language="da-dk" Text=":"/>
+        </TextBlock>
         <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="372,63,0,0" TextWrapping="Wrap" Text="{Binding Movie.Title}" VerticalAlignment="Top" Width="168"/>
 
-        <TextBlock x:Name="sadasd_Copy2" Grid.Column="2" HorizontalAlignment="Left" Margin="264,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="128" Height="20"><Run Text="Varighed"/><Run Text=" "/><Run Text="i m"/><Run Text="in"/><Run Text="utter"/><Run Text=":"/></TextBlock>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="264,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="128" Height="20">
+            <Run Text="Varighed"/><Run Text=" "/><Run Text="i m"/><Run Text="in"/><Run Text="utter"/><Run Text=":"/>
+        </TextBlock>
         <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="372,107,0,0" TextWrapping="Wrap" Text="{Binding Movie.Length}" VerticalAlignment="Top" Width="168"/>
 
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="310,146,0,0" TextWrapping="Wrap" Text="Instruktør:" VerticalAlignment="Top"/>
+        <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="372,144,0,0" TextWrapping="Wrap" Text="{Binding Movie.Director}" VerticalAlignment="Top" Width="168"/>
 
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="286,177,0,0" TextWrapping="Wrap" Text="Premiere dato:" VerticalAlignment="Top"/>
         <DatePicker Grid.Column="2" HorizontalAlignment="Left" Margin="392,173,0,0" VerticalAlignment="Top" SelectedDate="{Binding Movie.ReleaseDate}"/>
 
-        <TextBlock x:Name="sadasd_Copy3" Grid.Column="2" HorizontalAlignment="Left" Margin="328,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" Text="Genre:" Height="16"/>
-
-        <ComboBox Grid.Column="2"
-          HorizontalAlignment="Left"
-          Margin="372,215,0,0"
-          Width="168"
-          VerticalAlignment="Top"
-          SelectedValue="{Binding Movie.Genre, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Content" Height="22">
-
-
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="328,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" Text="Genre:" Height="16"/>
+        <ComboBox Grid.Column="2" HorizontalAlignment="Left" Margin="372,215,0,0" Width="168" VerticalAlignment="Top" SelectedValue="{Binding Movie.Genre, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Content" Height="22">
             <ComboBoxItem Content="Action"/>
             <ComboBoxItem Content="Adventure"/>
             <ComboBoxItem Content="Comedy"/>
@@ -51,53 +51,52 @@
             <ComboBoxItem Content="Horror"/>
             <ComboBoxItem Content="Western"/>
             <ComboBoxItem Content="Thriller"/>
-
         </ComboBox>
 
         <Button Grid.Column="2" Content="Tilføj Film" HorizontalAlignment="Left" Margin="392,251,0,0" VerticalAlignment="Top" Height="19" Width="116" Command="{Binding Movie.AddMovieCommand}"/>
-        <Button Grid.Column="2" Content="Slet Film" HorizontalAlignment="Left" Margin="392,280,0,0" VerticalAlignment="Top" Height="20" Width="116"  Command="{Binding Movie.RemoveMovieCommand}"/>
+        <Button Grid.Column="2" Content="Slet Film" HorizontalAlignment="Left" Margin="392,280,0,0" VerticalAlignment="Top" Height="20" Width="116" Command="{Binding Movie.RemoveMovieCommand}"/>
         <ListBox Grid.Column="2" ItemsSource="{Binding Movie.Movies}" SelectedItem="{Binding Movie.SelectedMovie}" Margin="328,340,527,20"/>
 
-
-
-        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="92,31,0,0" TextWrapping="Wrap" FontSize="20" FontWeight="Bold" VerticalAlignment="Top"><Run Text="Opret "/><Run Language="da-dk" Text="b"/><Run Language="da-dk" Text="iograf"/></TextBlock>
-        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="40,64,0,0" TextWrapping="Wrap" Text="Navn" VerticalAlignment="Top" RenderTransformOrigin="1.068,0.88"/>
+        <!-- ================= OPRET BIOGRAF ================= -->
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="92,31,0,0" TextWrapping="Wrap" FontSize="20" FontWeight="Bold" VerticalAlignment="Top">
+            <Run Text="Opret "/><Run Language="da-dk" Text="b"/><Run Language="da-dk" Text="iograf"/>
+        </TextBlock>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="40,64,0,0" TextWrapping="Wrap" Text="Navn" VerticalAlignment="Top"/>
         <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="72,64,0,0" TextWrapping="Wrap" Text="{Binding Cinema.Name}" VerticalAlignment="Top" Width="168"/>
-        <Button Grid.Column="2" Content="Tilføj biograf" HorizontalAlignment="Left" Margin="98,94,0,0" VerticalAlignment="Top" Height="19" Width="116" Command="{Binding Cinema.AddCinemaCommand}"/>
-        <Button Grid.Column="2" Content="Slet biograf" HorizontalAlignment="Left" Margin="98,118,0,0" VerticalAlignment="Top" Height="20" Width="116"  Command="{Binding Cinema.RemoveCinemaCommand}"/>
-        <ListBox Grid.Column="2" ItemsSource="{Binding Cinema.Cinemas}" SelectedItem="{Binding Cinema.SelectedCinema}" Margin="54,144,860,275"/>
+        <Button Grid.Column="2" Content="Tilføj biograf" HorizontalAlignment="Left" Margin="98,176,0,0" VerticalAlignment="Top" Height="19" Width="116" Command="{Binding Cinema.AddCinemaCommand}"/>
+        <Button Grid.Column="2" Content="Slet biograf" HorizontalAlignment="Left" Margin="98,200,0,0" VerticalAlignment="Top" Height="20" Width="116" Command="{Binding Cinema.RemoveCinemaCommand}"/>
+        <ListBox Grid.Column="2" ItemsSource="{Binding Cinema.Cinemas}" SelectedItem="{Binding Cinema.SelectedCinema}" Margin="18,340,811,21">
 
+        </ListBox>
+        <!-- ================= TILFØJ SAL TIL BIOGRAF ================= -->
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="382,365,0,0" TextWrapping="Wrap" FontSize="20" FontWeight="Bold" VerticalAlignment="Top">
+            <Run Language="da-dk" Text="Tilføj"/><Run Text=" "/><Run Language="da-dk" Text="Sal til biografer"/>
+        </TextBlock>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="374,393,0,0" TextWrapping="Wrap" FontSize="8" FontWeight="Medium" VerticalAlignment="Top">
+            <Run Text="Vælg en biograf fra listen herunder før du opretter en sal"/>
+        </TextBlock>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="346,415,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <Run Text="Sal navn"/><Run Language="da-dk" Text=":"/>
+        </TextBlock>
+        <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="398,413,0,0" TextWrapping="Wrap" Text="{Binding Sal.Name}" VerticalAlignment="Top" Width="168"/>
 
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="322,446,0,0" TextWrapping="Wrap" Text="Vælg biograf:" VerticalAlignment="Top"/>
+        <ComboBox ItemsSource="{Binding Cinema.Cinemas}" SelectedItem="{Binding Cinema.SelectedCinema}" Grid.Column="2" HorizontalAlignment="Left" Margin="398,443,0,0" VerticalAlignment="Top" Width="168"/>
 
+        <Button Grid.Column="2" Content="Tilføj Sal" HorizontalAlignment="Left" Margin="424,486,0,0" VerticalAlignment="Top" Height="18" Width="116" Command="{Binding Sal.AddCommandSal}"/>
+        <Button Grid.Column="2" Content="Slet Sal" HorizontalAlignment="Left" Margin="424,511,0,0" VerticalAlignment="Top" Height="18" Width="116" Command="{Binding Sal.RemoveCommandSal}"/>
+
+        <!-- ================= OPRET FORESTILLING ================= -->
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="668,31,0,0" TextWrapping="Wrap" Text="Opret forestilling" FontSize="20" FontWeight="Bold" VerticalAlignment="Top"/>
 
-
-
-
-        <ListBox Grid.Column="2" ItemsSource="{Binding }" SelectedItem="" Margin="628,251,230,20"/>
-
-
-        <Button Grid.Column="2" Content="Tilføj Film" HorizontalAlignment="Left" Margin="690,185,0,0" VerticalAlignment="Top" Height="19" Width="116" Command="{Binding Forestilling.AddForestillingCommand}"/>
-        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="310,146,0,0" TextWrapping="Wrap" Text="instruktør:" VerticalAlignment="Top"/>
-        <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="372,144,0,0" TextWrapping="Wrap" Text="{Binding Movie.Director}" VerticalAlignment="Top" Width="168"/>
-
-
-
-
-        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="56,312,0,0" TextWrapping="Wrap" FontSize="20" FontWeight="Bold" VerticalAlignment="Top"><Run Language="da-dk" Text="Tilføj"/><Run Text=" "/><Run Language="da-dk" Text="Sal til biografer"/></TextBlock>
-        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="20,362,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="1.068,0.88"><Run Text="Sal navn"/><Run Language="da-dk" Text=":"/></TextBlock>
-        <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="72,360,0,0" TextWrapping="Wrap" Text="{Binding Sal.Name}" VerticalAlignment="Top" Width="168"/>
-        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="48,340,0,0" TextWrapping="Wrap" FontSize="8                    " FontWeight="Medium" VerticalAlignment="Top"><Run Text="Klik på en biograf fra listen oven"/><Run Text="for"/><Run Text=" "/><Run Language="da-dk" Text=" "/><Run Text="inden to oprttet en sal "/></TextBlock>
-        <Button Grid.Column="2" Content="Tilføj Sal" HorizontalAlignment="Left" Margin="98,433,0,0" VerticalAlignment="Top" Height="18" Width="116" Command="{Binding Sal.AddCommandSal}"/>
-
-
-        <Button Grid.Column="2" Content="Slet Sal" HorizontalAlignment="Left" Margin="98,458,0,0" VerticalAlignment="Top" Height="18" Width="116" Command="{Binding Sal.RemoveCommandSal}"/>
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="598,75,0,0" TextWrapping="Wrap" Text="Vælg Film:" VerticalAlignment="Top"/>
-
         <ComboBox Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="664,72,0,0" Width="168" Height="22" ItemsSource="{Binding Movie.Movies}" DisplayMemberPath="Title" SelectedItem="{Binding Movie.SelectedMovie}"/>
-        <ComboBox Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="664,108,0,0" Width="168" Height="22" ItemsSource="{Binding Sal.Sale}" DisplayMemberPath="Title" SelectedItem="{Binding Sal.SelectedSal}"/>
 
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="604,111,0,0" TextWrapping="Wrap" Text="Vælg Sal:" VerticalAlignment="Top"/>
 
+        <ComboBox Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="664,108,0,0" Width="168" Height="22" ItemsSource="{Binding Sal.Sale}" DisplayMemberPath="Name" SelectedItem="{Binding Sal.SelectedSal}"/>
+
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="580,148,0,0" TextWrapping="Wrap" Text="Vælg Starttid:" VerticalAlignment="Top"/>
         <ComboBox Grid.Column="2" HorizontalAlignment="Left" Margin="664,148,0,0" Width="168" VerticalAlignment="Top" SelectedValue="{Binding Forestilling.StartTid, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Content" Height="22">
             <ComboBoxItem Content="10:00:00"/>
             <ComboBoxItem Content="10:30:00"/>
@@ -126,15 +125,11 @@
             <ComboBoxItem Content="22:00:00"/>
         </ComboBox>
 
+        <Button Grid.Column="2" Content="Tilføj Forestilling" HorizontalAlignment="Left" Margin="690,185,0,0" VerticalAlignment="Top" Height="19" Width="116" Command="{Binding Forestilling.AddForestillingCommand}"/>
+
+        <Button Grid.Column="2" Content="Slet Forestilling" HorizontalAlignment="Left" Margin="690,213,0,0" VerticalAlignment="Top" Height="20" Width="116" Command="{Binding Forestilling.RemoveForestillingCommand}"/>
 
 
-        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="604,111,0,0" TextWrapping="Wrap" Text="Vælg Sal:" VerticalAlignment="Top"/>
-        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="580,148,0,0" TextWrapping="Wrap" Text="Vælg Starttid:" VerticalAlignment="Top"/>
-        <Button Grid.Column="2" Content="Slet Film" HorizontalAlignment="Left" Margin="690,213,0,0" VerticalAlignment="Top" Height="20" Width="116"  Command="{Binding Movie.RemoveMovieCommand}"/>
-        <ComboBox ItemsSource="{Binding Cinema.Cinemas}" SelectedItem="{Binding Cinema.SelectedCinema}" Grid.Column="2" HorizontalAlignment="Left" Margin="72,390,0,0" VerticalAlignment="Top" Width="168"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="97,393,0,0" TextWrapping="Wrap" Text="Vælg biograf:" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-
-        <!-- Din eksisterende TextBox til forestillingens egen titel/navn -->
-
+        <ListBox Grid.Column="2" ItemsSource="{Binding Forestilling.Forestillinger}" SelectedItem="{Binding Forestilling.SelectedForestilling}" Margin="628,251,230,20"/>
     </Grid>
 </Window>
