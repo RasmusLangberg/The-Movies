@@ -5,6 +5,7 @@ using System.Windows.Input;
 using The_Movies.Model;
 using System.IO;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Linq;
 
 namespace The_Movies.Repository
@@ -66,17 +67,22 @@ namespace The_Movies.Repository
         {
             try
             {
-                var options = new JsonSerializerOptions { WriteIndented = true };
+                var options = new JsonSerializerOptions 
+                { 
+                    WriteIndented = true,
+                    PropertyNamingPolicy = null,
+                    PropertyNameCaseInsensitive = true,
+                    Converters = { new System.Text.Json.Serialization.JsonStringEnumConverter() }
+                };
                 var json = JsonSerializer.Serialize(_movies, options);
                 File.WriteAllText(FilePath, json);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error {ex.Message}");
+                Console.WriteLine($"Error saving movies: {ex.Message}");
             }
         }
 
-        // Load movies from JSON file
         private void LoadMovies()
         {
             try
@@ -84,7 +90,13 @@ namespace The_Movies.Repository
                 if (File.Exists(FilePath))
                 {
                     var json = File.ReadAllText(FilePath);
-                    var loadedMovies = JsonSerializer.Deserialize<List<Movie>>(json);
+                    var options = new JsonSerializerOptions 
+                    { 
+                        PropertyNamingPolicy = null, 
+                        PropertyNameCaseInsensitive = true,
+                        Converters = { new System.Text.Json.Serialization.JsonStringEnumConverter() }
+                    };
+                    var loadedMovies = JsonSerializer.Deserialize<List<Movie>>(json, options);
                     if (loadedMovies != null)
                     {
                         _movies = loadedMovies;
@@ -93,7 +105,7 @@ namespace The_Movies.Repository
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error {ex.Message}");
+                Console.WriteLine($"Error loading movies: {ex.Message}");
                 _movies = new List<Movie>();
             }
         }

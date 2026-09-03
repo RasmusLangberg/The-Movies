@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using The_Movies.Model;
 
 namespace The_Movies.Repository
@@ -36,11 +37,20 @@ namespace The_Movies.Repository
         public void RemoveForestilling(Forestilling forestilling)
         {
             _fore.Remove(forestilling);
+            SaveFore();
         }
 
         public void UpdateForestilling(Forestilling forestilling)
         {
-            throw new NotImplementedException();
+            var existingForestilling = _fore.Find(f => f.StartTid == forestilling.StartTid);
+            if (existingForestilling != null)
+            {
+                existingForestilling.Movie = forestilling.Movie;
+                existingForestilling.Cinema = forestilling.Cinema;
+                existingForestilling.Sal = forestilling.Sal;
+                existingForestilling.StartTid = forestilling.StartTid;
+                SaveFore();
+            }
         }
 
 
@@ -48,17 +58,22 @@ namespace The_Movies.Repository
         {
             try
             {
-                var options = new JsonSerializerOptions { WriteIndented = true };
+                var options = new JsonSerializerOptions 
+                { 
+                    WriteIndented = true,
+                    PropertyNamingPolicy = null,
+                    PropertyNameCaseInsensitive = true,
+                    Converters = { new JsonStringEnumConverter() }
+                };
                 var json = JsonSerializer.Serialize(_fore, options);
                 File.WriteAllText(FilePath, json);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error {ex.Message}");
+                Console.WriteLine($"Error saving forestillinger: {ex.Message}");
             }
         }
 
-        // Load movies from JSON file
         private void LoadFore()
         {
             try
@@ -66,7 +81,13 @@ namespace The_Movies.Repository
                 if (File.Exists(FilePath))
                 {
                     var json = File.ReadAllText(FilePath);
-                    var loadedFore = JsonSerializer.Deserialize<List<Forestilling>>(json);
+                    var options = new JsonSerializerOptions 
+                    { 
+                        PropertyNamingPolicy = null,
+                        PropertyNameCaseInsensitive = true,
+                        Converters = { new JsonStringEnumConverter() }
+                    };
+                    var loadedFore = JsonSerializer.Deserialize<List<Forestilling>>(json, options);
                     if (loadedFore != null)
                     {
                         _fore = loadedFore;
@@ -75,7 +96,7 @@ namespace The_Movies.Repository
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error {ex.Message}");
+                Console.WriteLine($"Error loading forestillinger: {ex.Message}");
                 _fore = new List<Forestilling>();
             }
         }

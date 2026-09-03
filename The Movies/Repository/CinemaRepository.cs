@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using The_Movies.Model;
 
 namespace The_Movies.Repository
 {
-    class CinemaRepository : ICinemaRepository
+    public class CinemaRepository : ICinemaRepository
 
     {
         private List<Cinema> _cinemas = new List<Cinema>();
@@ -20,6 +21,7 @@ namespace The_Movies.Repository
         public void AddCinema(Cinema cinema)
         {
             _cinemas.Add(cinema);
+            SaveCinema();
         }
 
         public IEnumerable<Cinema> GetAllCinemas()
@@ -29,12 +31,13 @@ namespace The_Movies.Repository
 
         public Cinema GetCinemaByName(string name)
         {
-            return _cinemas.Find(x => name.Equals(name));
+            return _cinemas.Find(x => x.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
         public void RemoveCinema(Cinema cinema)
         {
             _cinemas.Remove(cinema);
+            SaveCinema();
         }
 
         public void UpdateCinema(Cinema cinema)
@@ -53,13 +56,19 @@ namespace The_Movies.Repository
         {
             try
             {
-                var options = new JsonSerializerOptions { WriteIndented = true };
+                var options = new JsonSerializerOptions 
+                { 
+                    WriteIndented = true,
+                    PropertyNamingPolicy = null,
+                    PropertyNameCaseInsensitive = true,
+                    Converters = { new JsonStringEnumConverter() }
+                };
                 var json = JsonSerializer.Serialize(_cinemas, options);
                 File.WriteAllText(FilePath, json);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error {ex.Message}");
+                Console.WriteLine($"Error saving cinemas: {ex.Message}");
             }
         }
 
@@ -70,7 +79,13 @@ namespace The_Movies.Repository
                 if (File.Exists(FilePath))
                 {
                     var json = File.ReadAllText(FilePath);
-                    var loadedCinema = JsonSerializer.Deserialize<List<Cinema>>(json);
+                    var options = new JsonSerializerOptions 
+                    { 
+                        PropertyNamingPolicy = null,
+                        PropertyNameCaseInsensitive = true,
+                        Converters = { new JsonStringEnumConverter() }
+                    };
+                    var loadedCinema = JsonSerializer.Deserialize<List<Cinema>>(json, options);
                     if (loadedCinema != null)
                     {
                         _cinemas = loadedCinema;
@@ -79,7 +94,7 @@ namespace The_Movies.Repository
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error {ex.Message}");
+                Console.WriteLine($"Error loading cinemas: {ex.Message}");
                 _cinemas = new List<Cinema>();
             }
         }
