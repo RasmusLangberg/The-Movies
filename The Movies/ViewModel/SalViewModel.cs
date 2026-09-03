@@ -74,12 +74,12 @@ namespace The_Movies.ViewModel
 
         public void AddSal()
         {
-            if (_cinemaViewModel.selectedCinema == null) return;
+            if (_cinemaViewModel.SelectedCinema == null) return;
 
-            Sal sal = new Sal(Name, _cinemaViewModel.selectedCinema);
+            Sal sal = new Sal(Name, _cinemaViewModel.SelectedCinema);
             _repo.AddSal(sal);
             Sale.Add(sal);
-            _cinemaViewModel.selectedCinema.Sale.Add(sal);
+            _cinemaViewModel.SelectedCinema.Sale.Add(sal);
 
         }
 

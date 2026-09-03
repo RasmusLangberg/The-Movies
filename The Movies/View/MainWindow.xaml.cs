@@ -35,11 +35,11 @@ namespace The_Movies
             var fore = new ForestillingRepositroy();
             var cinemaViewModel = new CinemaViewModel(repo2);
             var salViewModel = new SalViewModel(sal, cinemaViewModel);
-            DataContext = new MainViewModel(new MovieViewModel(repo, msg), cinemaViewModel, salViewModel, new ForestillingViewModel(fore, cinemaViewModel, salViewModel), msg);
+            DataContext = new MainViewModel(new MovieViewModel(repo, msg), cinemaViewModel, salViewModel, new ForestillingViewModel(fore, new MovieViewModel(repo, msg), salViewModel), msg);
 
 
         }
 
-        
+       
     }
 }   

@@ -64,13 +64,13 @@ namespace The_Movies.ViewModel
 
         private Cinema _selectedCinema;
 
-        public Cinema selectedCinema
+        public Cinema SelectedCinema
         {
             get { return _selectedCinema; }
             set 
             { 
                 _selectedCinema = value;
-                OnPropertyChanged(nameof(selectedCinema));
+                OnPropertyChanged(nameof(SelectedCinema));
             }
         }
 
@@ -88,9 +88,9 @@ namespace The_Movies.ViewModel
 
         private void RemoveCinema()
         {
-            _repo.RemoveCinema(selectedCinema);
+            _repo.RemoveCinema(SelectedCinema);
 
-            Cinemas.Remove(selectedCinema);
+            Cinemas.Remove(SelectedCinema);
 
 
 
