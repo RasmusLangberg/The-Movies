@@ -78,16 +78,6 @@
 
 
         <Button Grid.Column="2" Content="Tilføj Film" HorizontalAlignment="Left" Margin="690,185,0,0" VerticalAlignment="Top" Height="19" Width="116" Command="{Binding Forestilling.AddForestillingCommand}"/>
-        <Button Grid.Column="2" Content="Slet Film" HorizontalAlignment="Left" Margin="690,209,0,0" VerticalAlignment="Top" Height="20" Width="116"  Command="{Binding Forestilling.RemoveForestillingCommand}" RenderTransformOrigin="0.5,0.5">
-            <Button.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleX="3.468"/>
-                    <RotateTransform/>
-                    <TranslateTransform X="-0.606"/>
-                </TransformGroup>
-            </Button.RenderTransform>
-        </Button>
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="310,146,0,0" TextWrapping="Wrap" Text="instruktør:" VerticalAlignment="Top"/>
         <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="372,144,0,0" TextWrapping="Wrap" Text="{Binding Movie.Director}" VerticalAlignment="Top" Width="168"/>
 
@@ -104,51 +94,44 @@
         <Button Grid.Column="2" Content="Slet Sal" HorizontalAlignment="Left" Margin="98,470,0,0" VerticalAlignment="Top" Height="18" Width="116" Command="{Binding Sal.RemoveCommandSal}"/>
         <ListBox Grid.Column="2" ItemsSource="{Binding Sal.Sale}" SelectedItem="{Binding Sal.SelectedSal}" Margin="54,500,860,20"/>
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="598,75,0,0" TextWrapping="Wrap" Text="Vælg Film:" VerticalAlignment="Top"/>
-        <ComboBox Grid.Column="2" 
-          HorizontalAlignment="Left" 
-          VerticalAlignment="Top"
-          Margin="664,72,0,0" 
-          Width="168" 
-          Height="22"
-          ItemsSource="{Binding Movie.Movies}" 
-          DisplayMemberPath="Title"
-          SelectedItem="{Binding Movie.SelectedMovie}"/>
-        <ComboBox Grid.Column="2" 
-            HorizontalAlignment="Left" 
-            VerticalAlignment="Top"
-            Margin="664,108,0,0" 
-            Width="168" 
-            Height="22" 
-            DisplayMemberPath="Title"
-            SelectedItem="{Binding Movie.SelectedMovie}">
-            <ComboBox 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Top" 
-                Width="168" 
-                Height="22"
-                ItemsSource="{Binding Movie.Movies}" 
-                DisplayMemberPath="Title"
-                SelectedItem="{Binding Movie.SelectedMovie}"/>
+        
+        <ComboBox Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="664,72,0,0" Width="168" Height="22" ItemsSource="{Binding Movie.Movies}" DisplayMemberPath="Title" SelectedItem="{Binding Movie.SelectedMovie}"/>
+        <ComboBox Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="664,108,0,0" Width="168" Height="22" ItemsSource="{Binding Sal.Sale}" DisplayMemberPath="Title" SelectedItem="{Binding Sal.SelectedSal}"/>
+       
+        
+        <ComboBox Grid.Column="2" HorizontalAlignment="Left" Margin="664,148,0,0" Width="168" VerticalAlignment="Top" SelectedValue="{Binding Forestilling.StartTid, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Content" Height="22">
+            <ComboBoxItem Content="10:00:00"/>
+            <ComboBoxItem Content="10:30:00"/>
+            <ComboBoxItem Content="11:00:00"/>
+            <ComboBoxItem Content="11:30:00"/>
+            <ComboBoxItem Content="12:00:00"/>
+            <ComboBoxItem Content="12:30:00"/>
+            <ComboBoxItem Content="13:00:00"/>
+            <ComboBoxItem Content="13:30:00"/>
+            <ComboBoxItem Content="14:00:00"/>
+            <ComboBoxItem Content="14:30:00"/>
+            <ComboBoxItem Content="15:00:00"/>
+            <ComboBoxItem Content="15:30:00"/>
+            <ComboBoxItem Content="16:00:00"/>
+            <ComboBoxItem Content="16:30:00"/>
+            <ComboBoxItem Content="17:00:00"/>
+            <ComboBoxItem Content="17:30:00"/>
+            <ComboBoxItem Content="18:00:00"/>
+            <ComboBoxItem Content="18:30:00"/>
+            <ComboBoxItem Content="19:00:00"/>
+            <ComboBoxItem Content="19:30:00"/>
+            <ComboBoxItem Content="20:00:00"/>
+            <ComboBoxItem Content="20:30:00"/>
+            <ComboBoxItem Content="21:00:00"/>
+            <ComboBoxItem Content="21:30:00"/>
+            <ComboBoxItem Content="22:00:00"/>
         </ComboBox>
+
+
+
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="604,111,0,0" TextWrapping="Wrap" Text="Vælg Sal:" VerticalAlignment="Top"/>
-        <ComboBox Grid.Column="2" 
-            HorizontalAlignment="Left" 
-            VerticalAlignment="Top"
-            Margin="664,145,0,0" 
-            Width="168" 
-            Height="22" 
-            DisplayMemberPath="Title"
-            SelectedItem="{Binding Movie.SelectedMovie}">
-            <ComboBox 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Top" 
-                Width="168" 
-                Height="22"
-                ItemsSource="{Binding Movie.Movies}" 
-                DisplayMemberPath="Title"
-                SelectedItem="{Binding Movie.SelectedMovie}"/>
-        </ComboBox>
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="580,148,0,0" TextWrapping="Wrap" Text="Vælg Starttid:" VerticalAlignment="Top"/>
+        <Button Grid.Column="2" Content="Slet Film" HorizontalAlignment="Left" Margin="690,213,0,0" VerticalAlignment="Top" Height="20" Width="116"  Command="{Binding Movie.RemoveMovieCommand}"/>
 
         <!-- Din eksisterende TextBox til forestillingens egen titel/navn -->
 
