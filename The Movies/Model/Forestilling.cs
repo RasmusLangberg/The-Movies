@@ -10,20 +10,16 @@ namespace The_Movies.Model
         public Cinema Cinema { get; set; }
         public Sal Sal { get; set; }
         public DateOnly Dato { get; set; } = DateOnly.FromDateTime(DateTime.Now);
-        public string StartTid { get; set; }
+        public TimeSpan StartTid { get; set; }
 
-        public string SlutTid => BeregnSlutTid(StartTid, Movie.Length);
+        public TimeSpan SlutTid => calculateEndTime(StartTid, Movie.Length);
 
-        private static string BeregnSlutTid(string startTid, int varighedMinutter)
+        private static TimeSpan calculateEndTime(TimeSpan startTid, int varighedMinutter)
         {
-            if (!TimeSpan.TryParse(startTid, out TimeSpan start))
-                return "??:??";
-
-            TimeSpan slut = start.Add(TimeSpan.FromMinutes(varighedMinutter + 30));
-            return slut.ToString(@"hh\:mm");
+            return startTid.Add(TimeSpan.FromMinutes(varighedMinutter + 30));
         }
 
-        public Forestilling(Movie movie, Cinema cinema, Sal sal, DateOnly dato, string startTid)
+        public Forestilling(Movie movie, Cinema cinema, Sal sal, DateOnly dato, TimeSpan startTid)
         {
             Movie = movie;
             Cinema = cinema;
