@@ -6,6 +6,8 @@ namespace The_Movies.Model
 {
     public class Forestilling
     {
+        private const int Commercials = 15;
+        private const int Cleaning = 15;
         public Movie Movie { get; set; }
         public Cinema Cinema { get; set; }
         public Sal Sal { get; set; }
@@ -16,7 +18,7 @@ namespace The_Movies.Model
 
         private static TimeSpan calculateEndTime(TimeSpan startTid, int varighedMinutter)
         {
-            return startTid.Add(TimeSpan.FromMinutes(varighedMinutter + 30));
+            return startTid.Add(TimeSpan.FromMinutes(varighedMinutter + Commercials + Cleaning));
         }
 
         public Forestilling(Movie movie, Cinema cinema, Sal sal, DateOnly dato, TimeSpan startTid)
