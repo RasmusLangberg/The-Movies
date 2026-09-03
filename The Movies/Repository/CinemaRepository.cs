@@ -13,6 +13,12 @@ namespace The_Movies.Repository
         private List<Cinema> _cinemas = new List<Cinema>();
         private const string FilePath = "Cinema.json";
 
+        private static readonly JsonSerializerOptions _jsonOptions = new()
+        {
+            WriteIndented = true,
+            Converters = { new DateOnlyJsonConverter(), new TimeSpanJsonConverter() }
+        };
+
         public CinemaRepository()
         {
             LoadCinema();
@@ -20,6 +26,7 @@ namespace The_Movies.Repository
         public void AddCinema(Cinema cinema)
         {
             _cinemas.Add(cinema);
+            SaveCinema();
         }
 
         public IEnumerable<Cinema> GetAllCinemas()
@@ -29,12 +36,13 @@ namespace The_Movies.Repository
 
         public Cinema GetCinemaByName(string name)
         {
-            return _cinemas.Find(x => name.Equals(name));
+            return _cinemas.Find(x => x.Name.Equals(name));
         }
 
         public void RemoveCinema(Cinema cinema)
         {
             _cinemas.Remove(cinema);
+            SaveCinema();
         }
 
         public void UpdateCinema(Cinema cinema)
@@ -53,8 +61,7 @@ namespace The_Movies.Repository
         {
             try
             {
-                var options = new JsonSerializerOptions { WriteIndented = true };
-                var json = JsonSerializer.Serialize(_cinemas, options);
+                var json = JsonSerializer.Serialize(_cinemas, _jsonOptions);
                 File.WriteAllText(FilePath, json);
             }
             catch (Exception ex)
@@ -70,7 +77,7 @@ namespace The_Movies.Repository
                 if (File.Exists(FilePath))
                 {
                     var json = File.ReadAllText(FilePath);
-                    var loadedCinema = JsonSerializer.Deserialize<List<Cinema>>(json);
+                    var loadedCinema = JsonSerializer.Deserialize<List<Cinema>>(json, _jsonOptions);
                     if (loadedCinema != null)
                     {
                         _cinemas = loadedCinema;

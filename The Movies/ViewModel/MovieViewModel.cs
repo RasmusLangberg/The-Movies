@@ -53,7 +53,7 @@ namespace The_Movies.ViewModel
             set
             {
                 _title = value;
-                
+
                 OnPropertyChanged(nameof(Title));
             }
         }
@@ -92,18 +92,15 @@ namespace The_Movies.ViewModel
             }
         }
 
-        private DateOnly _ReleaseDate = DateOnly.FromDateTime(DateTime.Now);
-        public DateOnly ReleaseDate
+
+        private DateTime? _releaseDate = DateTime.Today;
+        public DateTime? ReleaseDate
         {
-            get => _ReleaseDate;
-            set
-            {
-                _ReleaseDate = value;
-                OnPropertyChanged(nameof(ReleaseDate));
-            }
+            get => _releaseDate;
+            set { _releaseDate = value; OnPropertyChanged(nameof(ReleaseDate)); }
         }
 
-       
+
         private Movie _selectedMovie;
 
         public Movie SelectedMovie
@@ -146,14 +143,14 @@ namespace The_Movies.ViewModel
 
         private void AddMovie()
         {
-            if(Title==null || Length == null || Genre == null || Director == null )
+            if (Title == null || Length == null || Genre == null || Director == null || ReleaseDate == null)
             {
                 _msg.ShowMessage("Alle felter skal udfyldes");
                 return;
             }
 
 
-            Movie movie = new Movie(Title, Length.Value, Genre, Director, ReleaseDate.ToDateTime(new TimeOnly(0, 0)));
+            Movie movie = new Movie(Title, Length.Value, Genre, Director, DateOnly.FromDateTime(ReleaseDate.Value));
 
             try
             {

@@ -11,19 +11,18 @@ namespace The_Movies.Model
         public int Length { get; set; }
         public string Genre { get; set; }
         public string Director { get; set; }
-
-        
+              
         public DateOnly ReleaseDate { get; set; } = DateOnly.FromDateTime(DateTime.Now);
 
 
 
-        public Movie(string title, int length, string genre, string director, DateTime releaseDate)
+        public Movie(string title, int length, string genre, string director, DateOnly releaseDate)
         {
             Title = title;
             Length = length;
             Genre = genre;
             Director = director;
-            ReleaseDate = DateOnly.FromDateTime(releaseDate);
+            ReleaseDate = releaseDate;
         }
 
         public override string ToString()

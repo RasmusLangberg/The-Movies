@@ -2,7 +2,7 @@
 {
     public class Sal
     {
-        public string Name { get; }
+        public string Name { get; set; }
 
         public Sal(string name)
         {

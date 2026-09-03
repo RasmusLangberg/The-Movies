@@ -12,6 +12,12 @@ namespace The_Movies.Repository
         private List<Forestilling> _fore = new List<Forestilling>();
         private const string FilePath = "Forestilling.json";
 
+        private static readonly JsonSerializerOptions _jsonOptions = new()
+        {
+            WriteIndented = true,
+            Converters = { new DateOnlyJsonConverter(), new TimeSpanJsonConverter() }
+        };
+
         public ForestillingRepositroy()
         {
             LoadFore();
@@ -36,6 +42,7 @@ namespace The_Movies.Repository
         public void RemoveForestilling(Forestilling forestilling)
         {
             _fore.Remove(forestilling);
+            SaveFore();
         }
 
         public void UpdateForestilling(Forestilling forestilling)
@@ -48,8 +55,7 @@ namespace The_Movies.Repository
         {
             try
             {
-                var options = new JsonSerializerOptions { WriteIndented = true };
-                var json = JsonSerializer.Serialize(_fore, options);
+                var json = JsonSerializer.Serialize(_fore, _jsonOptions);
                 File.WriteAllText(FilePath, json);
             }
             catch (Exception ex)
@@ -66,7 +72,7 @@ namespace The_Movies.Repository
                 if (File.Exists(FilePath))
                 {
                     var json = File.ReadAllText(FilePath);
-                    var loadedFore = JsonSerializer.Deserialize<List<Forestilling>>(json);
+                    var loadedFore = JsonSerializer.Deserialize<List<Forestilling>>(json, _jsonOptions);
                     if (loadedFore != null)
                     {
                         _fore = loadedFore;

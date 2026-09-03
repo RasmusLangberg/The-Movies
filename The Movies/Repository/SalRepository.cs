@@ -16,6 +16,12 @@ namespace The_Movies.Repository
         private List<Sal> _sale = new List<Sal>();
         private const string FilePath = "Sal.json";
 
+        private static readonly JsonSerializerOptions _jsonOptions = new()
+        {
+            WriteIndented = true,
+            Converters = { new DateOnlyJsonConverter(), new TimeSpanJsonConverter() }
+        };
+
         public SalRepository()
         {
             LoadSal();
@@ -33,7 +39,7 @@ namespace The_Movies.Repository
 
         public Sal GetSalByName(string name)
         {
-           return _sale.Find(x => name.Equals(name));
+           return _sale.Find(x => x.Name.Equals(name));
         }
 
         public void UpdateSal(Sal sal)
@@ -59,8 +65,7 @@ namespace The_Movies.Repository
         {
             try
             {
-                var options = new JsonSerializerOptions { WriteIndented = true };
-                var json = JsonSerializer.Serialize(_sale, options);
+                var json = JsonSerializer.Serialize(_sale, _jsonOptions);
                 File.WriteAllText(FilePath, json);
             }
             catch (Exception ex)
@@ -76,7 +81,7 @@ namespace The_Movies.Repository
                 if (File.Exists(FilePath))
                 {
                     var json = File.ReadAllText(FilePath);
-                    var loadedsale = JsonSerializer.Deserialize<List<Sal>>(json);
+                    var loadedsale = JsonSerializer.Deserialize<List<Sal>>(json, _jsonOptions);
                     if (loadedsale != null)
                     {
                         _sale = loadedsale;

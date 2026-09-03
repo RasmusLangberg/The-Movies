@@ -49,15 +49,11 @@ namespace The_Movies.ViewModel
             set { _selectedSal = value; OnPropertyChanged(nameof(SelectedSal)); }
         }
 
-       
+        private DateOnly _dato = DateOnly.FromDateTime(DateTime.Now);
+        public DateOnly Dato { get => _dato; set { _dato = value; OnPropertyChanged(nameof(Dato)); } }
 
-
-        private string _startTid;
-        public string StartTid
-        {
-            get => _startTid;
-            set { _startTid = value; OnPropertyChanged(nameof(StartTid)); }
-        }
+        private TimeSpan? _startTid;
+        public TimeSpan? StartTid { get => _startTid; set { _startTid = value; OnPropertyChanged(nameof(StartTid)); } }
 
 
 
@@ -78,7 +74,6 @@ namespace The_Movies.ViewModel
         }
 
         // Dette er metoden MainViewModel skal kalde med parametre
-
         private void AddForestilling()
         {
             if (_cinemaViewModel.SelectedCinema == null)
@@ -93,14 +88,18 @@ namespace The_Movies.ViewModel
             if (_movieViewModel.SelectedMovie == null)
                 return;
 
-            if (string.IsNullOrEmpty(StartTid))
+            if(Dato == null)
+                return;
+
+            if (StartTid == null)
                 return;
 
             Forestilling forestilling = new Forestilling(
-                _movieViewModel.SelectedMovie,
-                _cinemaViewModel.SelectedCinema,
-                _salViewModel.SelectedSal,
-                StartTid
+                movie: _movieViewModel.SelectedMovie,
+                cinema: _cinemaViewModel.SelectedCinema,
+                sal: _salViewModel.SelectedSal,
+                dato: Dato,
+                startTid: StartTid.Value
             );
 
             _repo.AddForestilling(forestilling);
