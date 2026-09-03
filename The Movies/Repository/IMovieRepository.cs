@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using The_Movies.Model;
+﻿using The_Movies.Model;
 
 namespace The_Movies.Repository
 {
     public interface IMovieRepository
     {
-       
+
         void AddMovie(Movie movie);
         IEnumerable<Movie> GetAllMovies();
         Movie GetMovieByTitle(string title);

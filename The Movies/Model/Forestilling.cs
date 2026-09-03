@@ -8,18 +8,22 @@ namespace The_Movies.Model
     {
         private const int Commercials = 15;
         private const int Cleaning = 15;
+
         public Movie Movie { get; set; }
         public Cinema Cinema { get; set; }
         public Sal Sal { get; set; }
         public DateOnly Dato { get; set; } = DateOnly.FromDateTime(DateTime.Now);
         public TimeSpan StartTid { get; set; }
-
         public TimeSpan SlutTid => calculateEndTime(StartTid, Movie.Length);
+
+
 
         private static TimeSpan calculateEndTime(TimeSpan startTid, int varighedMinutter)
         {
             return startTid.Add(TimeSpan.FromMinutes(varighedMinutter + Commercials + Cleaning));
         }
+
+
 
         public Forestilling(Movie movie, Cinema cinema, Sal sal, DateOnly dato, TimeSpan startTid)
         {

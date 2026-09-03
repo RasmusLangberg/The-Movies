@@ -67,26 +67,12 @@ namespace The_Movies.ViewModel
         // Dette er metoden MainViewModel skal kalde med parametre
         private void AddForestilling()
         {
-            if (_cinemaViewModel.SelectedCinema == null || _cinemaViewModel.SelectedCinema.Sale == null || _salViewModel.SelectedSal == null || _movieViewModel.SelectedMovie == null || string.IsNullOrEmpty(StartTid))
+            if (_cinemaViewModel.SelectedCinema == null || _cinemaViewModel.SelectedCinema.Sale == null || _salViewModel.SelectedSal == null || _movieViewModel.SelectedMovie == null || StartTid == null)
             {
                 return;
             }
                
-            Forestilling forestilling = new Forestilling(_movieViewModel.SelectedMovie, _cinemaViewModel.SelectedCinema, _salViewModel.SelectedSal, StartTid );
-
-            if(Dato == null)
-                return;
-
-            if (StartTid == null)
-                return;
-
-            Forestilling forestilling = new Forestilling(
-                movie: _movieViewModel.SelectedMovie,
-                cinema: _cinemaViewModel.SelectedCinema,
-                sal: _salViewModel.SelectedSal,
-                dato: Dato,
-                startTid: StartTid.Value
-            );
+            Forestilling forestilling = new Forestilling(_movieViewModel.SelectedMovie, _cinemaViewModel.SelectedCinema, _salViewModel.SelectedSal,Dato, StartTid.Value );
 
             _repo.AddForestilling(forestilling);
 

@@ -55,9 +55,9 @@
 
         <Button Grid.Column="2" Content="Tilføj Film" HorizontalAlignment="Left" Margin="392,251,0,0" VerticalAlignment="Top" Height="19" Width="116" Command="{Binding Movie.AddMovieCommand}"/>
         <Button Grid.Column="2" Content="Slet Film" HorizontalAlignment="Left" Margin="392,280,0,0" VerticalAlignment="Top" Height="20" Width="116" Command="{Binding Movie.RemoveMovieCommand}"/>
-        <ListBox Grid.Column="2" ItemsSource="{Binding Movie.Movies}" SelectedItem="{Binding Movie.SelectedMovie}" Margin="346,331,509,29"/>
+        <ListBox Grid.Column="2" ItemsSource="{Binding Movie.Movies}" SelectedItem="{Binding Movie.SelectedMovie}" Margin="328,332,527,28"/>
 
-        
+
         <!-- ================= OPRET BIOGRAF ================= -->
 
         <TextBlock Grid.Column="2"
@@ -104,7 +104,7 @@
          ItemsSource="{Binding Cinema.Cinemas}"
          SelectedItem="{Binding Cinema.SelectedCinema}"
          Margin="28,244,803,28"/>
-        
+
         <!-- ================= TILFØJ SAL TIL BIOGRAF ================= -->
 
         <TextBlock Grid.Column="2"
@@ -144,7 +144,7 @@
         <!-- ================= OPRET FORESTILLING ================= -->
         <TextBlock Grid.Column="2"
            HorizontalAlignment="Left"
-           Margin="668,31,0,0"
+           Margin="748,23,0,0"
            Text="Opret forestilling"
            FontSize="20"
            FontWeight="Bold"
@@ -155,14 +155,14 @@
 
         <TextBlock Grid.Column="2"
            HorizontalAlignment="Left"
-           Margin="598,75,0,0"
+           Margin="678,68,0,0"
            Text="Vælg Film:"
            VerticalAlignment="Top"/>
 
         <ComboBox Grid.Column="2"
           HorizontalAlignment="Left"
           VerticalAlignment="Top"
-          Margin="674,72,0,0"
+          Margin="754,64,0,0"
           Width="168"
           Height="22"
           ItemsSource="{Binding Movie.Movies}"
@@ -174,14 +174,14 @@
 
         <TextBlock Grid.Column="2"
            HorizontalAlignment="Left"
-           Margin="580,111,0,0"
+           Margin="660,104,0,0"
            Text="Vælg Biograf:"
            VerticalAlignment="Top"/>
 
         <ComboBox Grid.Column="2"
           HorizontalAlignment="Left"
           VerticalAlignment="Top"
-          Margin="674,108,0,0"
+          Margin="754,100,0,0"
           Width="168"
           Height="22"
           ItemsSource="{Binding Cinema.Cinemas}"
@@ -193,14 +193,14 @@
 
         <TextBlock Grid.Column="2"
            HorizontalAlignment="Left"
-           Margin="604,147,0,0"
+           Margin="684,140,0,0"
            Text="Vælg Sal:"
            VerticalAlignment="Top"/>
 
         <ComboBox Grid.Column="2"
           HorizontalAlignment="Left"
           VerticalAlignment="Top"
-          Margin="674,144,0,0"
+          Margin="754,136,0,0"
           Width="168"
           Height="22"
           ItemsSource="{Binding Cinema.SelectedCinema.Sale}"
@@ -212,13 +212,13 @@
 
         <TextBlock Grid.Column="2"
            HorizontalAlignment="Left"
-           Margin="580,183,0,0"
+           Margin="660,176,0,0"
            Text="Vælg Starttid:"
            VerticalAlignment="Top"/>
 
         <ComboBox Grid.Column="2"
           HorizontalAlignment="Left"
-          Margin="674,180,0,0"
+          Margin="754,172,0,0"
           Width="168"
           Height="22"
           VerticalAlignment="Top"
@@ -259,16 +259,16 @@
         <Button Grid.Column="2"
         Content="Tilføj Forestilling"
         HorizontalAlignment="Left"
-        Margin="690,220,0,0"
+        Margin="770,212,0,0"
         VerticalAlignment="Top"
-        Height="19"
+        Height="20"
         Width="116"
         Command="{Binding Forestilling.AddForestillingCommand}"/>
 
         <Button Grid.Column="2"
         Content="Slet Forestilling"
         HorizontalAlignment="Left"
-        Margin="690,248,0,0"
+        Margin="770,240,0,0"
         VerticalAlignment="Top"
         Height="20"
         Width="116"
@@ -280,6 +280,6 @@
         <ListBox Grid.Column="2"
          ItemsSource="{Binding Forestilling.Forestillinger}"
          SelectedItem="{Binding Forestilling.SelectedForestilling}"
-         Margin="628,285,230,20"/>
+         Margin="628,285,72,20"/>
     </Grid>
 </Window>
