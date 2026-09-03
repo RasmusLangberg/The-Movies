@@ -28,6 +28,7 @@
         <DatePicker Grid.Column="2" HorizontalAlignment="Left" Margin="392,173,0,0" VerticalAlignment="Top" SelectedDate="{Binding Movie.ReleaseDate}"/>
 
         <TextBlock x:Name="sadasd_Copy3" Grid.Column="2" HorizontalAlignment="Left" Margin="328,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" Text="Genre:" Height="16"/>
+        
         <ComboBox Grid.Column="2"
           HorizontalAlignment="Left"
           Margin="372,215,0,0"
@@ -99,7 +100,11 @@
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="20,362,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="1.068,0.88"><Run Text="Sal navn"/><Run Language="da-dk" Text=":"/></TextBlock>
         <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="72,360,0,0" TextWrapping="Wrap" Text="{Binding Sal.Name}" VerticalAlignment="Top" Width="168"/>
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="48,340,0,0" TextWrapping="Wrap" FontSize="8                    " FontWeight="Medium" VerticalAlignment="Top"><Run Text="Klik på en biograf fra listen oven"/><Run Text="for"/><Run Text=" "/><Run Language="da-dk" Text=" "/><Run Text="inden to oprttet en sal "/></TextBlock>
-        <Button Grid.Column="2" Content="Tilføj Sal" HorizontalAlignment="Left" Margin="98,396,0,0" VerticalAlignment="Top" Height="18" Width="116" Command="{Binding Sal.AddSalCommand}"/>
+        <Button Grid.Column="2" Content="Tilføj Sal" HorizontalAlignment="Left" Margin="98,445,0,0" VerticalAlignment="Top" Height="18" Width="116" Command="{Binding Sal.AddCommandSal}"/>
+       
+     
+        <Button Grid.Column="2" Content="Slet Sal" HorizontalAlignment="Left" Margin="98,470,0,0" VerticalAlignment="Top" Height="18" Width="116" Command="{Binding Sal.RemoveCommandSal}"/>
+        <ListBox Grid.Column="2" ItemsSource="{Binding Sal.Sale}" SelectedItem="{Binding Sal.SelectedSal}" Margin="54,500,860,20"/>
 
     </Grid>
 </Window>

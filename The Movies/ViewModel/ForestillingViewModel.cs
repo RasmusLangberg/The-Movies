@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows.Input;
 using The_Movies.Model;
@@ -11,20 +12,60 @@ namespace The_Movies.ViewModel
     public class ForestillingViewModel : ViewModelBase
     {
         private readonly IForestillingRepository _repo;
-    
-        
-        public ICommand AddForestilling { get; }
-        public ICommand RemoveForestilling { get; }
 
-        public ForestillingViewModel(IForestillingRepository repo)
+        public ObservableCollection<Forestilling> Forestillinger { get; set; }
+
+        public ICommand AddForestillingCommand { get; }
+        public ICommand RemoveForestillingCommand { get; }
+
+        private string _title;
+        public string Title
         {
-            _repo = repo;
+            get => _title;
+            set { _title = value; OnPropertyChanged(nameof(Title)); }
+        }
 
+        private Forestilling _selectedForestilling;
+        public Forestilling SelectedForestilling
+        {
+            get => _selectedForestilling;
+            set { _selectedForestilling = value; OnPropertyChanged(nameof(SelectedForestilling)); }
+        }
+
+        private DateTime _startTid;
+        public DateTime StartTid
+        {
+            get => _startTid;
+            set { _startTid = value; OnPropertyChanged(nameof(StartTid)); }
         }
 
 
 
+        public ForestillingViewModel(IForestillingRepository repo)
+        {
+            _repo = repo;
+            Forestillinger = new ObservableCollection<Forestilling>(_repo.GetAllForestillinger());
 
+            AddForestillingCommand = new RelayCommand(parameter => AddForestilling(parameter as Movie, parameter as Sal, DateTime.Now));
+            RemoveForestillingCommand = new RelayCommand(parameter => RemoveForestilling());
+        }
 
+        // Dette er metoden MainViewModel skal kalde med parametre
+        public void AddForestilling(Movie movie, Sal sal, DateTime startTid)
+        {
+            if (movie == null || sal == null) return;
+
+            var forestilling = new Forestilling(movie, sal, startTid);
+            _repo.AddForestilling(forestilling);
+            Forestillinger.Add(forestilling);
+        }
+
+        public void RemoveForestilling()
+        {
+            if (SelectedForestilling == null) return;
+
+            _repo.RemoveForestilling(SelectedForestilling);
+            Forestillinger.Remove(SelectedForestilling);
+        }
     }
 }

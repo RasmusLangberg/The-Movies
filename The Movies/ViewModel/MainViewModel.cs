@@ -29,6 +29,16 @@ namespace The_Movies.ViewModel
         }
 
 
+        public void OpretForestilling()
+        {
+            var movie = Movie.SelectedMovie;
+            var sal = Sal.SelectedSal;
+            var startTid = Forestilling.StartTid; // eller en dedikeret input-property
+
+            Forestilling.AddForestilling(movie, sal, startTid);
+        }
+
+
 
     }
 }
