@@ -94,6 +94,9 @@ namespace The_Movies.ViewModel
 
                 // Tilføj også til den lokale liste
                 Sale.Add(sal);
+
+                // Tilføj til repository
+                _repo.AddSal(sal);
             }
 
             // Opdater UI
