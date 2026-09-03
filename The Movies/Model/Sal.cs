@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.Policy;
-using System.Text;
-
-namespace The_Movies.Model
+﻿namespace The_Movies.Model
 {
     public class Sal
     {
@@ -11,8 +6,10 @@ namespace The_Movies.Model
 
         public Sal(string name)
         {
-            Name = name; 
-            
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentException("Sal skal have et navn.", nameof(name));
+
+            Name = name;
         }
 
     }

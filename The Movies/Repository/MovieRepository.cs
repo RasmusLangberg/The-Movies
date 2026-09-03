@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Windows.Input;
 using The_Movies.Model;
 using System.IO;
@@ -14,6 +18,12 @@ namespace The_Movies.Repository
     {
         private List<Movie> _movies = new List<Movie>();
         private const string FilePath = "movies.json";
+
+        private static readonly JsonSerializerOptions _jsonOptions = new()
+        {
+            WriteIndented = true,
+            Converters = { new DateOnlyJsonConverter(), new TimeSpanJsonConverter() }
+        };
 
         public MovieRepository()
         {
@@ -65,22 +75,8 @@ namespace The_Movies.Repository
         // Save movies to JSON file
         private void SaveMovies()
         {
-            try
-            {
-                var options = new JsonSerializerOptions 
-                { 
-                    WriteIndented = true,
-                    PropertyNamingPolicy = null,
-                    PropertyNameCaseInsensitive = true,
-                    Converters = { new System.Text.Json.Serialization.JsonStringEnumConverter() }
-                };
-                var json = JsonSerializer.Serialize(_movies, options);
-                File.WriteAllText(FilePath, json);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error saving movies: {ex.Message}");
-            }
+            var json = JsonSerializer.Serialize(_movies, _jsonOptions);
+            File.WriteAllText(FilePath, json);
         }
 
         private void LoadMovies()
@@ -90,13 +86,7 @@ namespace The_Movies.Repository
                 if (File.Exists(FilePath))
                 {
                     var json = File.ReadAllText(FilePath);
-                    var options = new JsonSerializerOptions 
-                    { 
-                        PropertyNamingPolicy = null, 
-                        PropertyNameCaseInsensitive = true,
-                        Converters = { new System.Text.Json.Serialization.JsonStringEnumConverter() }
-                    };
-                    var loadedMovies = JsonSerializer.Deserialize<List<Movie>>(json, options);
+                    var loadedMovies = JsonSerializer.Deserialize<List<Movie>>(json, _jsonOptions);
                     if (loadedMovies != null)
                     {
                         _movies = loadedMovies;
