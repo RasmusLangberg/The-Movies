@@ -85,7 +85,8 @@ namespace The_Movies.ViewModel
             Cinema cinema = _cinemaViewModel.SelectedCinema;
 
             // Opret det antal sale som er valgt
-            for (int i = 1; i <= SelectedNumberOfSale; i++)
+            int startNummer = cinema.Sale.Count + 1;
+            for (int i = startNummer; i < startNummer + SelectedNumberOfSale; i++)
             {
                 Sal sal = new Sal($"Sal {i}");
 

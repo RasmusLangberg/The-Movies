@@ -11,6 +11,9 @@ namespace The_Movies.Model
 
         public Cinema(string name, List<Sal> sale)
         {
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentException("Biografen skal have et navn.", nameof(name));
+
             Name = name;
             Sale = sale;
         }
