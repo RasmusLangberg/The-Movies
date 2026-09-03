@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using The_Movies.Model;
 
 namespace The_Movies.Repository
 {
-    class CinemaRepository : ICinemaRepository
+    public class CinemaRepository : ICinemaRepository
 
     {
         private List<Cinema> _cinemas = new List<Cinema>();
@@ -36,7 +37,7 @@ namespace The_Movies.Repository
 
         public Cinema GetCinemaByName(string name)
         {
-            return _cinemas.Find(x => x.Name.Equals(name));
+            return _cinemas.Find(x => x.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
         public void RemoveCinema(Cinema cinema)
@@ -66,7 +67,7 @@ namespace The_Movies.Repository
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error {ex.Message}");
+                Console.WriteLine($"Error saving cinemas: {ex.Message}");
             }
         }
 
@@ -86,7 +87,7 @@ namespace The_Movies.Repository
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error {ex.Message}");
+                Console.WriteLine($"Error loading cinemas: {ex.Message}");
                 _cinemas = new List<Cinema>();
             }
         }

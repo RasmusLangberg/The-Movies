@@ -79,28 +79,28 @@ namespace The_Movies.ViewModel
 
         private void AddCinema()
         {
-            // Opret en tom liste til salene
+           
             List<Sal> sale = new List<Sal>();
 
-            // Opret det antal sale som er valgt
+            
             for (int i = 1; i <= SelectedNumberOfSale; i++)
             {
                 sale.Add(new Sal($"Sal {i}"));
             }
 
-            // Opret biografen med salene
+            
             Cinema cinema = new Cinema(Name, sale);
 
-            // Gem biografen
+            
             _repo.AddCinema(cinema);
 
-            // Tilføj til listen i UI
+            
             Cinemas.Add(cinema);
 
-            // Ryd navn
+            
             Name = "";
 
-            // Sæt antal tilbage til 1
+            
             SelectedNumberOfSale = 1;
         }
 

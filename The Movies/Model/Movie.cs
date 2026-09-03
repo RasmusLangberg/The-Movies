@@ -14,7 +14,13 @@ namespace The_Movies.Model
               
         public DateOnly ReleaseDate { get; set; } = DateOnly.FromDateTime(DateTime.Now);
 
-
+        public Movie()
+        {
+            Title = string.Empty;
+            Genre = string.Empty;
+            Director = string.Empty;
+            ReleaseDate = DateOnly.FromDateTime(DateTime.Now);
+        }
 
         public Movie(string title, int length, string genre, string director, DateOnly releaseDate)
         {

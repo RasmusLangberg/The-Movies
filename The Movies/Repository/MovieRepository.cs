@@ -7,6 +7,10 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Windows.Input;
 using The_Movies.Model;
+using System.IO;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Linq;
 
 namespace The_Movies.Repository
 {
@@ -75,7 +79,6 @@ namespace The_Movies.Repository
             File.WriteAllText(FilePath, json);
         }
 
-        // Load movies from JSON file
         private void LoadMovies()
         {
             try
@@ -92,7 +95,7 @@ namespace The_Movies.Repository
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error {ex.Message}");
+                Console.WriteLine($"Error loading movies: {ex.Message}");
                 _movies = new List<Movie>();
             }
         }

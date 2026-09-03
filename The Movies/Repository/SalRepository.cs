@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.Json;
-using System.Windows.Input;
+using System.Text.Json.Serialization;
 using The_Movies.Model;
-using The_Movies.Repository;
-using The_Movies.ViewModel;
 
 
 namespace The_Movies.Repository
@@ -29,7 +27,8 @@ namespace The_Movies.Repository
 
         public void AddSal(Sal sal)
         {
-            _sale.Add(sal);    
+            _sale.Add(sal);
+            SaveSal();
         }
 
         public IEnumerable<Sal> GetAllSale()
@@ -39,7 +38,7 @@ namespace The_Movies.Repository
 
         public Sal GetSalByName(string name)
         {
-           return _sale.Find(x => x.Name.Equals(name));
+            return _sale.Find(x => x.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
         public void UpdateSal(Sal sal)
@@ -59,6 +58,7 @@ namespace The_Movies.Repository
         public void RemoveSal(Sal sal)
         {
             _sale.Remove(sal);
+            SaveSal();
         }
 
         private void SaveSal()
@@ -70,7 +70,7 @@ namespace The_Movies.Repository
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error {ex.Message}");
+                Console.WriteLine($"Error saving sal: {ex.Message}");
             }
         }
 
@@ -90,7 +90,7 @@ namespace The_Movies.Repository
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error {ex.Message}");
+                Console.WriteLine($"Error loading sal: {ex.Message}");
                 _sale = new List<Sal>();
             }
         }
