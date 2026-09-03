@@ -14,6 +14,8 @@ namespace The_Movies.ViewModel
 
         private readonly ISalRepository _repo;
 
+        private readonly CinemaViewModel _cinemaViewModel;
+
         public ObservableCollection<Sal> Sale { get; set; }
 
         public ICommand AddCommandSal;
@@ -60,34 +62,24 @@ namespace The_Movies.ViewModel
         }
 
 
-
-        private Cinema _cinema;
-
-        public Cinema Cinema
-        {
-            get { return _cinema; }
-            set { _cinema = value; OnPropertyChanged(nameof(Cinema)); }
-        }
-
-
-
-
-        public SalViewModel(ISalRepository repo)
+        public SalViewModel(ISalRepository repo, CinemaViewModel cinemaViewModel)
         {
             _repo = repo;
+            _cinemaViewModel = cinemaViewModel;
             Sale = new ObservableCollection<Sal>(_repo.GetAllSale());
             AddCommandSal = new RelayCommand(parameter => AddSal());
             RemoveCommandSal = new RelayCommand(parameter => RemoveSal());
-
         }
 
 
         public void AddSal()
         {
+            if (_cinemaViewModel.selectedCinema == null) return;
 
-            Sal sal = new Sal(Name, Cinema);
+            Sal sal = new Sal(Name, _cinemaViewModel.selectedCinema);
             _repo.AddSal(sal);
             Sale.Add(sal);
+            _cinemaViewModel.selectedCinema.Sale.Add(sal);
 
         }
 

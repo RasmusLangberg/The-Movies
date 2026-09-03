@@ -13,17 +13,22 @@ namespace The_Movies.ViewModel
     {
         private readonly IForestillingRepository _repo;
 
+        private readonly CinemaViewModel _cinemaViewModel;
+
+        private readonly SalViewModel _salViewModel;  
+
         public ObservableCollection<Forestilling> Forestillinger { get; set; }
 
         public ICommand AddForestillingCommand { get; }
         public ICommand RemoveForestillingCommand { get; }
 
-        private string _title;
-        public string Title
-        {
-            get => _title;
-            set { _title = value; OnPropertyChanged(nameof(Title)); }
-        }
+       
+
+
+
+
+
+
 
         private Forestilling _selectedForestilling;
         public Forestilling SelectedForestilling
@@ -41,9 +46,11 @@ namespace The_Movies.ViewModel
 
 
 
-        public ForestillingViewModel(IForestillingRepository repo)
+        public ForestillingViewModel(IForestillingRepository repo, CinemaViewModel cinemaViewModel, SalViewModel salViewModel   )
         {
             _repo = repo;
+            _cinemaViewModel = cinemaViewModel;
+            _salViewModel = salViewModel;
             Forestillinger = new ObservableCollection<Forestilling>(_repo.GetAllForestillinger());
 
             AddForestillingCommand = new RelayCommand(parameter => AddForestilling(parameter as Movie, parameter as Sal, DateTime.Now));
