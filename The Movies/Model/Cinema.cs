@@ -9,15 +9,13 @@ namespace The_Movies.Model
         public string Name { get; set; }
         public List<Sal> Sale { get; set; } = new List<Sal>();
 
-        public Cinema(string name)
+        public Cinema(string name, List<Sal> sale)
         {
             Name = name;
-        }
-
-        public Cinema(string name, List<Sal> sale) : this(name)
-        {
             Sale = sale;
         }
+
+       
 
         public override string ToString()
         {

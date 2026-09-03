@@ -7,19 +7,32 @@ namespace The_Movies.Model
     public class Forestilling
     {
         public Movie Movie { get; set; }
+        public Cinema Cinema { get; set; }
         public Sal Sal { get; set; }
-        public DateTime StartTid { get; set; }
+        public string StartTid { get; set; }
 
-        public Forestilling(Movie movie, Sal sal, DateTime startTid)
+        public string SlutTid => BeregnSlutTid(StartTid, Movie.Length);
+
+        private static string BeregnSlutTid(string startTid, int varighedMinutter)
+        {
+            if (!TimeSpan.TryParse(startTid, out TimeSpan start))
+                return "??:??";
+
+            TimeSpan slut = start.Add(TimeSpan.FromMinutes(varighedMinutter + 30));
+            return slut.ToString(@"hh\:mm");
+        }
+
+        public Forestilling(Movie movie, Cinema cinema, Sal sal, string startTid)
         {
             Movie = movie;
+            Cinema = cinema;
             Sal = sal;
             StartTid = startTid;
         }
 
-        public DateTime ReklameOgRengøringsTid(DateTime tid)
+        public override string ToString()
         {
-            return tid.AddMinutes(30);
+            return $"{Movie.Title} - {Cinema.Name} - {Sal.Name} - {StartTid} til {SlutTid}";
         }
     }
 }

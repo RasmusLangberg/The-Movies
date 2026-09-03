@@ -28,14 +28,19 @@ namespace The_Movies
         {
             InitializeComponent();
 
+
             var repo = new MovieRepository();
             var msg = new MessageService();
             var repo2 = new CinemaRepository();
             var sal = new SalRepository();
             var fore = new ForestillingRepositroy();
+
+            var movieViewModel = new MovieViewModel(repo, msg);
             var cinemaViewModel = new CinemaViewModel(repo2);
-            var salViewModel = new SalViewModel(sal,repo2, cinemaViewModel);
-            DataContext = new MainViewModel(new MovieViewModel(repo, msg), cinemaViewModel, salViewModel, new ForestillingViewModel(fore, new MovieViewModel(repo, msg), salViewModel), msg);
+            var salViewModel = new SalViewModel(sal, repo2, cinemaViewModel);
+            var forestillingViewModel = new ForestillingViewModel(fore, repo, cinemaViewModel, salViewModel, movieViewModel);
+
+            DataContext = new MainViewModel(movieViewModel, cinemaViewModel, salViewModel, forestillingViewModel, msg);
 
 
         }

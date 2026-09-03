@@ -44,7 +44,7 @@ namespace The_Movies.Repository
             {
                 exsistingSal.Name = sal.Name;
                 
-                exsistingSal.BiografDenTilhøre = sal.BiografDenTilhøre;
+                
                 SaveSal();
             };
 

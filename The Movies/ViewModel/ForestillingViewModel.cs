@@ -14,7 +14,11 @@ namespace The_Movies.ViewModel
     {
         private readonly IForestillingRepository _repo;
 
+        private readonly IMovieRepository _repoMovie;
+
         private readonly MovieViewModel _movieViewModel;
+
+        private readonly CinemaViewModel _cinemaViewModel;
 
         private readonly SalViewModel _salViewModel;  
 
@@ -48,8 +52,8 @@ namespace The_Movies.ViewModel
        
 
 
-        private DateTime _startTid;
-        public DateTime StartTid
+        private string _startTid;
+        public string StartTid
         {
             get => _startTid;
             set { _startTid = value; OnPropertyChanged(nameof(StartTid)); }
@@ -57,31 +61,51 @@ namespace The_Movies.ViewModel
 
 
 
-        public ForestillingViewModel(IForestillingRepository repo, MovieViewModel movie, SalViewModel salViewModel)
+        public ForestillingViewModel(IForestillingRepository forestillingRepo,IMovieRepository movieRepo,CinemaViewModel cinemaViewModel,SalViewModel salViewModel,MovieViewModel movieViewModel)
         {
-            _repo = repo;
-            _movieViewModel = movie;
+            _repo = forestillingRepo;
+            _repoMovie = movieRepo;
+            _cinemaViewModel = cinemaViewModel;
             _salViewModel = salViewModel;
-            Forestillinger = new ObservableCollection<Forestilling>(_repo.GetAllForestillinger());
+            _movieViewModel = movieViewModel;
 
-            AddForestillingCommand = new RelayCommand(parameter => OpretForestilling());
+            Forestillinger = new ObservableCollection<Forestilling>(
+                _repo.GetAllForestillinger()
+            );
+
+            AddForestillingCommand = new RelayCommand(parameter => AddForestilling());
             RemoveForestillingCommand = new RelayCommand(parameter => RemoveForestilling());
         }
 
         // Dette er metoden MainViewModel skal kalde med parametre
 
-        private void OpretForestilling()
+        private void AddForestilling()
         {
-            // 1. Tjek om brugeren rent faktisk har valgt en film
-            if (SelectedForestilling == null)
-            {
-                MessageBox.Show("Venligst vælg en film først!");
+            if (_cinemaViewModel.SelectedCinema == null)
                 return;
-            }
 
-            Forestilling nyForestilling = new Forestilling(_movieViewModel.SelectedMovie, _salViewModel.SelectedSal, StartTid);
+            if (_cinemaViewModel.SelectedCinema.Sale == null)
+                return;
 
-            Forestillinger.Add(nyForestilling);
+            if (_salViewModel.SelectedSal == null)
+                return;
+
+            if (_movieViewModel.SelectedMovie == null)
+                return;
+
+            if (string.IsNullOrEmpty(StartTid))
+                return;
+
+            Forestilling forestilling = new Forestilling(
+                _movieViewModel.SelectedMovie,
+                _cinemaViewModel.SelectedCinema,
+                _salViewModel.SelectedSal,
+                StartTid
+            );
+
+            _repo.AddForestilling(forestilling);
+
+            Forestillinger.Add(forestilling);
         }
 
         public void RemoveForestilling()

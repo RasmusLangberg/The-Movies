@@ -22,6 +22,7 @@ namespace The_Movies.ViewModel
         public ICommand RemoveCommandSal { get; }
 
         private string _name;
+
         public string Name
         {
             get => _name;
@@ -32,7 +33,20 @@ namespace The_Movies.ViewModel
             }
         }
 
+        private int _selectedNumberOfSale;
+
+        public int SelectedNumberOfSale
+        {
+            get => _selectedNumberOfSale;
+            set
+            {
+                _selectedNumberOfSale = value;
+                OnPropertyChanged(nameof(SelectedNumberOfSale));
+            }
+        }
+
         private Sal _selectedSal;
+
         public Sal SelectedSal
         {
             get => _selectedSal;
@@ -40,74 +54,77 @@ namespace The_Movies.ViewModel
             {
                 _selectedSal = value;
                 OnPropertyChanged(nameof(SelectedSal));
-
-                // Når en sal vælges i UI, fyldes tekstfeltet automatisk
-                if (_selectedSal != null)
-                {
-                    Name = _selectedSal.Name;
-                }
             }
         }
 
-        public SalViewModel(ISalRepository repo, ICinemaRepository repoCinema, CinemaViewModel cinemaViewModel)
+        public SalViewModel(
+            ISalRepository repo,
+            ICinemaRepository repoCinema,
+            CinemaViewModel cinemaViewModel)
         {
             _repo = repo;
-            _repoCinema = repoCinema; // Modtag repo via Dependency Injection
+            _repoCinema = repoCinema;
             _cinemaViewModel = cinemaViewModel;
 
-            Sale = new ObservableCollection<Sal>(_repo.GetAllSale());
+            Sale = new ObservableCollection<Sal>();
 
-            UpdateCommandSal = new RelayCommand(parameter => UpdateSal());
             AddCommandSal = new RelayCommand(parameter => AddSal());
             RemoveCommandSal = new RelayCommand(parameter => RemoveSal());
         }
 
-        public void UpdateSal()
-        {
-            // 1. Tjek om en sal er valgt
-            if (SelectedSal == null) return;
-
-            // 2. Opdater navnet på den valgte Sal
-            SelectedSal.Name = Name;
-
-            // 3. Gem ændringen i SalRepository
-            _repo.UpdateSal(SelectedSal);
-
-            // 4. Hvis sal skal knyttes til den valgte biograf
-            if (_cinemaViewModel.SelectedCinema != null)
-            {
-                var cinema = _repoCinema.GetCinemaByName(_cinemaViewModel.SelectedCinema.Name);
-                if (cinema != null)
-                {
-                    // Opdater listen i biografen, hvis den ikke allerede er tilføjet
-                    if (!cinema.Sale.Contains(SelectedSal))
-                    {
-                        cinema.Sale.Add(SelectedSal);
-                    }
-                    _repoCinema.UpdateCinema(cinema);
-                }
-            }
-
-            // 5. Tving UI til at genfriske visningen i ObservableCollection
-            int index = Sale.IndexOf(SelectedSal);
-            if (index >= 0)
-            {
-                Sale[index] = SelectedSal;
-            }
-        }
-
         public void AddSal()
         {
-          
-          
+            // Tjek om en biograf er valgt
+            if (_cinemaViewModel.SelectedCinema == null)
+                return;
+
+            // Tjek om antal sale er valgt
+            if (SelectedNumberOfSale <= 0)
+                return;
+
+            Cinema cinema = _cinemaViewModel.SelectedCinema;
+
+            // Opret det antal sale som er valgt
+            for (int i = 1; i <= SelectedNumberOfSale; i++)
+            {
+                Sal sal = new Sal($"Sal {i}");
+
+                // Tilføj salen til den valgte biograf
+                cinema.Sale.Add(sal);
+
+                // Tilføj også til den lokale liste
+                Sale.Add(sal);
+            }
+
+            // Opdater UI
+            OnPropertyChanged(nameof(Sale));
+
+            // Nulstil antal
+            SelectedNumberOfSale = 0;
         }
 
         public void RemoveSal()
         {
-            if (SelectedSal == null) return;
+            if (SelectedSal == null)
+                return;
 
-            _repo.RemoveSal(SelectedSal);
+            Cinema cinema = _cinemaViewModel.SelectedCinema;
+
+            if (cinema == null)
+                return;
+
+            // Fjern salen fra biografen
+            cinema.Sale.Remove(SelectedSal);
+
+            // Fjern fra listen
             Sale.Remove(SelectedSal);
+
+            // Fjern fra repository
+            _repo.RemoveSal(SelectedSal);
+
+            SelectedSal = null;
+
+            OnPropertyChanged(nameof(Sale));
         }
     }
 }
